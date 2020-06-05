@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ion-content{
+    position: relative;
+}
+.content{
+    height: 533.5px;
+    width: 375px;
+    background-color: rgb(94, 15, 90);
+    position: absolute;
+}
+// 3 thanh ke ngang>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#hr1{
+    background-color: rgb(243, 232, 232);
+    width: 35px;
+    height: 3px;
+}
+#hr2{
+    background-color: rgb(243, 231, 231);
+    width: 25px;
+    height: 3px;
+    margin-top: 3px;
+}
+#hr3{
+    background-color: rgb(243, 233, 233);
+    width: 15px;
+    height: 3px;
+    margin-top: 3px;
+}
+#menu{
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    left: 35px;
+}
+// logo>>>>>>>>
+.logoJS{
+    position: absolute;
+    z-index: 2;
+    height: 15%;
+    width: 50%;
+    left: 170px;
+    top: 30px;
+    transform: rotate(15deg);
+}
+.logoFGT{
+    position: absolute;
+    z-index: 8;
+    left: 220px;
+    top: 410px;
+}
+.logoFGT ion-icon{
+    margin-left: 5px;
+}
+
+// Form>>>>>>>>>>>
+.form{
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+    width: 400px;
+    height: 380px;
+    border-radius: 50%;
+    top: 110px;
+    left: 25px;
+}
+#titleform{
+    position: absolute;
+    top: 65px;
+    left: 105px;
+    font-family: "Kozuka Mincho Pro";
+}
+//cac input sign in
+.inputs {
+    position: absolute;
+    z-index: 3;
+    width: 50%;
+    top: 120px;
+    left: 25px;
+}
+
+ion-input{ 
+    &.custom-class {
+        text-align: center;
+        font-size: 13px;
+        font-family: "Kozuka Mincho Pro";
+    }
+}
+
+ion-label{
+    text-align: center;
+}
+// button subit
+ion-button{
+    position: absolute;
+    z-index: 1;
+    background-color: #48345A;
+    width: 27%;
+    height: 25%;
+    left: 87px;
+    top: 115px;
+    border-radius: 10%;
+    border: none;
+}
+#submit{
+    font-family: "Kozuka Mincho Pro";
+    font-size: 8px;
+}
