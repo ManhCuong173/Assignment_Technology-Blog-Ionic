@@ -22,6 +22,14 @@ const routes: Routes = [
     path: 'user-normal',
     loadChildren: () => import('./user-normal/user-normal.module').then( m => m.UserNormalPageModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+  },
+  {
+    path: 'user-author',
+    loadChildren: () => import('./user-author/user-author.module').then( m => m.UserAuthorPageModule)
+  },
 
 
 ];
