@@ -1,0 +1,318 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+*::-webkit-scrollbar,::-webkit-scrollbar{
+    display: none;
+}
+
+p, h4,h5{
+    font-family: "Kozuka Mincho Pro";
+}
+
+main::-webkit-scrollbar,::-webkit-scrollbar {
+    display: none!important;
+}
+ion-content{
+     position: relative;
+     width: auto;
+     height: auto;
+ }
+// thanh left bar
+ .leftbar{
+     background-color: rgb(94, 15, 90);
+     position: absolute;
+     z-index: 1;
+     width: 45px;
+     height: 290px;
+     border-bottom-right-radius: 20px;
+ }
+// image in left bar
+ .imageuser{
+    width: 40px;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+ }
+ .img{
+     width: 90%;
+     height: 90%;
+ }
+//  /////////////////////
+
+// triple circle
+.circle1{
+    margin-top: 30px;
+    margin-left: 7px;
+    // position: absolute;
+    // z-index: 2;
+    background-color: rgb(255, 255, 255);
+    width:  30px;
+    height: 30px;
+    border-radius: 50%;
+    // top: 125px;
+    // left: 5px;
+}
+.circle2{
+    // position: absolute;
+    // z-index: 2;
+    margin-top: 15px;
+    margin-left: 7px;
+    background-color: rgb(255, 255, 255);
+    width:  30px;
+    height: 30px;
+    border-radius: 50%;
+    // top: 165px;
+    // left: 5px;
+}
+.circle3{
+    // position: absolute;
+    // z-index: 2;
+    margin-top: 15px;
+    margin-left: 7px;
+    background-color: rgb(243, 243, 243);
+    width:  30px;
+    height: 30px;
+    border-radius: 50%;
+    // top: 205px;
+    // left: 5px;
+}
+// /////////
+
+.topbar{
+
+    position: absolute;
+    z-index: 3;
+    height: 50px;
+    width: 100%;
+    left: 60px;
+    top: 50px;
+}
+.topbar ion-input{
+    width: 25%;
+    height: 45%;
+    border-radius: 5px;
+    float: left;
+    margin-left: 50px;
+    margin-right: 3px;
+    border: 1px solid #ccc;
+}
+.topbar ion-icon{
+    float: left;
+    height: 45%;
+    width: 10%;
+
+}
+.topbar p{
+    float: left;
+}
+// ///////
+.infouser {
+    height: 60px;
+    width: 210px;
+    margin-top: 115px;
+    margin-left: 70px;
+    // border-radius: 50%;
+    // background-color: white;
+    // box-shadow: 0 0 2px 1px grey;
+}
+.infouser img{
+
+    height: 90%;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 2px 1px grey;
+    float: left;
+}
+.infouser span{
+    float: left;
+    width: 60px;
+    margin-left: 20px;
+}
+.infouser ion-icon{
+    margin-top: 45px;
+    margin-left: 60px;
+}
+h4{
+    margin-left: 70px;
+    color: rgb(216, 36, 135);
+    margin-top:10px;
+}
+
+.chart{
+    background-color: rgb(243, 243, 243);
+    width: 180px;
+    height: 200px;
+    margin-left: 83px;
+    margin-top: 30px;
+}
+ .infochart{
+    width: 180px;
+    height: 200px;
+    box-shadow: 0 0 1px 2px gray;
+    border-radius: 5%;
+ }
+h5{
+    margin-top: 10px;
+}
+
+.iconUp{
+    width: 10%;
+    height: 10%;
+    float: right;
+    margin-top: 20px;
+    margin-right: 8px;
+}
+// Div cha chứa Manager & Convert
+.father{
+    width: 100%;
+    height: auto;
+    margin-top: 70px;
+
+}
+.titleFather{
+    transform: translate(55px, 13px);
+}
+// Chia Top các loại và chứa List bài viết
+.manager{
+    background-color: #fafafa;
+    width: 83%;
+    border-radius: 30px;
+    height: auto;
+    overflow: auto;
+    float: left;
+    margin-top: 20px;
+    box-shadow: 20px -20px 1px 12px #545985;
+    margin-left: 8px;
+    border: 1px solid #8a8589;
+
+}
+
+// Chuyển đổi giữa các chế độ
+.convert{
+    position: absolute;
+    z-index: 4;
+    right: 13px;
+    height: 130px;
+    width: 9%;
+    border-radius: 10px;
+    background-color: rgb(234, 240, 232);
+
+    margin-left: 3px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.convert hr {
+    margin-left: 5px;
+    height: 2px !important;
+    width: 17px !important;
+    background: rgb(180, 175, 175) !important;
+  }
+
+.convert span{
+    height: 20%;
+    margin-bottom: 5px;
+    line-height: 25px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    background-color: white;
+    border: solid 1px gray;
+    border-radius: 50%;
+}
+
+.managerHeader{
+
+    transform: translate(0px, 25px);
+    border-radius: 2px;
+    box-shadow: 0 3px 6px 0.3px #D7D7D7;
+    width: 97%;
+    margin-left: 3px;
+}
+.managerHeader p {
+    display: inline;
+    font-size: 14px;
+    margin-left: 14px;
+
+}
+
+#topReaction{
+    margin-top: 40px;
+}
+
+// Danh sách các bài viết được Top
+.listTop{
+    margin-top: 20px;
+    
+
+}
+
+.listTop ion-grid{
+    width: 90%;
+    border: solid 0.5px gray;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.listTop ion-row{
+    padding: 15px 15px;
+}
+
+.listTop ion-col img{
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px grey;
+}
+
+.listTop ion-col span{
+    font-size: 10px;
+}
+
+ #count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 40px;
+    background-color: #545985; border-radius: 50%;color: white;
+}
+
+.P{
+    margin-top: 30px !important;
+}
+
+.pageNumber{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+.pageNumber .previous{
+    border-radius: 0px;
+    height: 20px;
+    width: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+}
+
+.pageNumber .next{
+    border-radius: 0px;
+    height: 20px;
+    width: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search{
+   margin-top: 10px;
+}
+
+// .addUSer{
+//     position: absolute;
+
+// }
