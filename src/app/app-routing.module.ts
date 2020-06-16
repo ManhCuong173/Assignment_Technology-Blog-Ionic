@@ -30,6 +30,18 @@ const routes: Routes = [
     path: 'user-author',
     loadChildren: () => import('./user-author/user-author.module').then( m => m.UserAuthorPageModule)
   },
+  {
+    path: 'list-article',
+    loadChildren: () => import('./list-article/list-article.module').then( m => m.ListArticlePageModule)
+  },
+  {
+    path: 'add-new-article',
+    loadChildren: () => import('./add-new-article/add-new-article.module').then( m => m.AddNewArticlePageModule)
+  },
+  {
+    path: 'article',
+    loadChildren: () => import('./article/article.module').then( m => m.ArticlePageModule)
+  },
 
 
 ];
