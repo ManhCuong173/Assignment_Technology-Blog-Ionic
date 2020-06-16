@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Kozuka Mincho Pro";
+    height: auto;
+}
+
+*::-webkit-scrollbar,::-webkit-scrollbar{
+    display: none;
+}
+.container{
+    height: 100%;
+    overflow: scroll;
+    background-color: #48345A;
+}
+h3{
+    color: #48345A;
+}
+.content{
+    height: auto;
+    margin-top: 40px;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    background-color: white;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+}
+
+.header-content{
+    height: 80px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.header-content img{
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 2px gray;
+    transform: translate(0px,20px);
+}
+.header-content p{
+    transform: translate(0px,35px);
+    float: right;
+    font-size: 25px;
+    color: #608488;
+}
+
+.addArticle{
+    height: auto;
+    width: 80%;
+    margin-left: 10%;
+}
+.generate{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    margin-top: 15px;
+}
+.generate ion-icon{
+    border-radius: 5px;
+    margin-left: 110px;
+    height: 20px;
+    width: 20px;
+}
+.seriesName{
+    border: solid 1px gray;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+.pMargin{
+    margin-top: 15px;
+}
+
+ion-searchbar{
+    margin-top: 15px;
+}
+
+.textFile{
+    height: 100px;
+    border: solid 1px gray;
+}
+
+.insertImage{
+    margin-top: 15px;
+    background-color: white;
+    margin-left: 130px;
+    text-align: right;
+    width: 45%;
+    height: 25px;
+    border: solid 1px gray;
+    border-radius: 10px;
+}
+
+.changeFont{
+    margin-top: 15px;
+    height: 30px;
+    border: solid 1px gray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.changeFont p{
+    transform: translateY(4px);
+}
+
+
+.addTag{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.addTag p{
+    transform: translate(0px, 7px);
+    width: 50%;
+}
+.inputIcons{
+    position: relative;
+}
+.inputIcons ion-input{
+    float: right;
+    border: solid 1px gray;
+    height: 30px;
+    width: 80%;
+}
+.inputIcons ion-icon{
+    right: 5px;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+.TSS{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border: solid 1px gray;
+
+    .tag{
+
+        p{
+           
+            text-align: center;
+        }
+        width: 50px;
+        height: 25px;
+        background-color: #6C9ABC;
+        margin-left: 15px;
+        margin-top: 15px;
+        position: relative;
+        border-radius: 4px;
+        &::after{
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 20px solid #6C9ABC;
+            left: 100%;
+            top: 2.5px;
+        }
+    }
+}
+ 
+
+
+
+.footer-Article{
+
+    height: 60px;
+    margin-top: 35px;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-Article ion-button{
+    width: 60%;
+    height: 25px;
+    margin-left: 43px;
+    --background: #48345A;
+}
+
+

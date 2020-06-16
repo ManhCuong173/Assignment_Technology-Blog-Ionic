@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Kozuka Mincho Pro";
+    height: auto;
+}
+
+*::-webkit-scrollbar,::-webkit-scrollbar{
+    display: none;
+}
+.container{
+    height: 100%;
+    overflow: scroll;
+}
+
+.header{
+    height: 100px;
+    width: 100%;
+    background-color: #48345A;
+}
+
+.menu{
+    float: left;
+    height: 100%;
+    width: 30%;
+    background-color: #48345A;
+    bottom: 0px;
+}
+
+.hr1{
+    transform: translate(35px,60px);
+    background-color: rgb(243, 232, 232);
+    width: 35px;
+    height: 3px;
+}
+.hr2{
+    transform: translate(35px,60px);
+    background-color: rgb(243, 231, 231);
+    width: 25px;
+    height: 3px;
+    margin-top: 3px;
+}
+.hr3{
+    transform: translate(35px,60px);
+    background-color: rgb(243, 233, 233);
+    width: 15px;
+    height: 3px;
+    margin-top: 3px;
+}
+
+.tech{
+    float: left;
+    width: 70%;
+    height: 100%;
+    background-color: #48345A;
+}
+.tech ion-input{
+    width: 75%;
+    transform: translate(52px, 47px);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: white;
+}
+// End header
+
+.content{
+    background-color: #48345A;
+    height: auto;
+}
+
+.article-title{
+    transform: translate(0px, 20px);
+    background-color: white;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+}
+
+.article{
+    display: flex;
+    flex-direction: column;
+
+}
+.article h4{
+    color: #9F73AA;
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+.textFile{
+    width: 90%;
+    height: 120px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px grey;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+.bottomLine{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+.bottomLine p{
+    width: 60%;
+    text-align: center;
+}
+.bottomLine ion-icon{
+    margin-left: 15px;
+    width: 10%;
+
+}
+.img{
+    margin-left: 5px;
+    width: 20%;
+    background-color: white;
+    border-radius: 50%;
+    border: solid 1px gray;
+    box-shadow: 0 0 2px 1px grey;
+}
+.bottomLine img{
+    width: 90%;
+    height: 35px;
+}
+
+.page{
+    display: flex;
+    flex-direction: row;
+    margin-left: 75px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.page p{
+    margin-left: 5px;
+}
+.page ion-button{
+    margin-left: 5px;
+    --background: #54528A;
+}
