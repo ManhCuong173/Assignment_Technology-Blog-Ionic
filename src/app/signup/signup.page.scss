@@ -88,59 +88,34 @@ ion-button{
     background-color: #48345A;
     width: 30%;
     height: 13%;
-    left: 90px;
-    top: 245px;
+    left: 70px;
     border-radius: 10%;
     border: none;
+    top: 110%;
 }
 // text of submit button
 #submit{
     font-family: "Kozuka Mincho Pro";
-    font-size: 8px;
+    font-size: 10px;
+}
+.gender {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    
+    label {
+        font-family: 'Kozuka Mincho Pro';
+        font-size: 13px;
+        padding: 0 2.5px;
+        color: #958e8e;
+    }
+
+    input {
+        padding: 0 2.5px;
+    }
 }
 
 
-#male{
-    margin: 0;
-    padding: 0;
-    width: 30%;
-    height: 34px;
-    position: absolute;
-    z-index: 6;
-    top: 258px;
-    left: 90.5px;
-}
-#male ion-label{
-    font-size: 12px;
-    font-family: "Kozuka Mincho Pro";
-    padding-left: 12px;
-    position: absolute;
-    z-index: 2;
-}
-#male ion-radio{
-    position: absolute; z-index: 9; 
-    right: 42px;
-}
-// /////////////////
-#female{
-    margin: 0;
-    padding: 0;
-    height: 34px;
-    width: 30%;
-    position: absolute;
-    z-index: 6;
-    top: 257px;
-    left: 171px;
-}
-#female ion-label{
-    position: absolute;
-    z-index: 7;
-    font-size: 12px;
-    font-family: "Kozuka Mincho Pro";
-    left: 8px;
-}
-#female ion-radio{
-    position: absolute; z-index: 7; left: 2px;
-}
 
 

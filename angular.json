@@ -29,6 +29,26 @@
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/froala-editor/css",
+                "output": "css"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/font-awesome/css",
+                "output": "css"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/font-awesome/fonts",
+                "output": "fonts"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/froala-editor/js",
+                "output": "js"
               }
             ],
             "styles": [
@@ -37,6 +57,12 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "./node_modules/froala-editor/css/froala_editor.pkgd.min.css"
+              },
+              {
+                "input": "./node_modules/froala-editor/css/froala_style.min.css"
               }
             ],
             "scripts": []
