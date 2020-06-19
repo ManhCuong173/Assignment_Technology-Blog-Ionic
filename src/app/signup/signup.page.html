@@ -4,49 +4,41 @@
 
 <ion-content>
     <div class="content">
-      <div id="menu">
-        <div id="hr1"></div>
-        <div id="hr2"></div>
-        <div id="hr3"></div>
-      </div>
+        <div id="menu">
+            <div id="hr1"></div>
+            <div id="hr2"></div>
+            <div id="hr3"></div>
+        </div>
     </div>
     <div>
-      <img class="logo" src="../assets/Image/logo_js_2.png">
+        <img class="logo" src="../assets/Image/logo_js_2.png">
     </div>
     <div class="form">
-      <div id="titleform">
-        <h3>Sign Up</h3>
-      </div>
-      <div class="inputs">
-        <ion-item>
-          
-          <ion-input class="custom-class" placeholder="User name"></ion-input>
-        </ion-item>
-        <ion-item>
-            
-            <ion-input class="custom-class" placeholder="Email"></ion-input>
-        </ion-item>
-        <ion-item>
-          
-          <ion-input class="custom-class" type="Password" placeholder="Password"></ion-input>
-        </ion-item>
-        <ion-item>
-          
-          <ion-input class="custom-class" type="Password" placeholder="Repassword"></ion-input>
-        </ion-item>
-        <ion-button color="#48345A">
-          <p id="submit">Submit</p>
-        </ion-button>
-      </div>
-      <ion-radio-group>
-        <ion-item id="male" >
-          <ion-radio  color="danger"  name="sex" slot="end" ></ion-radio>
-            <ion-label slot="start">Male</ion-label>
-        </ion-item>
-        <ion-item id="female">
-          <ion-radio  color="primary"  name="sex" slot="start" ></ion-radio>
-          <ion-label slot="end">Female</ion-label>
-        </ion-item>
-      </ion-radio-group>
+        <div id="titleform">
+            <h3>Sign Up</h3>
+        </div>
+        <div class="inputs">
+            <form #f="ngForm" (ngSubmit)="submitForm(f)" novalidate>
+                <ion-item>
+                    <ion-input class="custom-class" placeholder="Email" name="email" ngModel #email="ngModel" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input class="custom-class" type="Password" placeholder="Password" name="password" ngModel></ion-input>
+                    <p></p>
+                </ion-item>
+                <ion-item>
+                    <ion-input class="custom-class" type="Password" placeholder="Repassword" name="repassword" ngModel></ion-input>
+                </ion-item>
+                <div class="gender">
+                    <label slot="start">Male</label>
+                    <input type="radio" name="gender" ngModel value="male" />
+                    <input type="radio" name="gender" ngModel value="female" />
+                    <label slot="end">Female</label>
+                </div>
+                <ion-button color="#48345A" type="submit">
+                    <p id="submit">Submit</p>
+                </ion-button>
+            </form>
+        </div>
     </div>
 </ion-content>
