@@ -33,6 +33,9 @@ import { DataService } from './data.service';
 import { LoginService } from './login.service';
 import { NotificationService } from './notification.service';
 import { UtilsService } from './utils.service';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
 export function initConfiguration(loginService: LoginService)
 {
   return (): Promise<any> => loginService.loadUser();
@@ -41,7 +44,7 @@ export function initConfiguration(loginService: LoginService)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig)],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), SocketIoModule.forRoot(config)],
   providers: [
     StatusBar,
     SplashScreen,

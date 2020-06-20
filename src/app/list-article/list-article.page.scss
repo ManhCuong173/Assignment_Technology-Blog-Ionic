@@ -13,6 +13,38 @@
     overflow: scroll;
 }
 
+.menu {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  
+    .menuButton {
+        width: 35%;
+        height: 2px;
+        position: relative;    
+        background: #ffff;
+        transform: translateY(-20px);
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 200%;
+            width: 120%;
+            height: 100%;
+            background: inherit;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 400%;
+            width: 150%;
+            height: 100%;
+            background: inherit;
+        }
+    }
+}
+
 .header{
     height: 100px;
     width: 100%;

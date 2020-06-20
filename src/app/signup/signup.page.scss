@@ -6,9 +6,11 @@ ion-content{
     position: relative;
 }
 .content{
-    height: 533.5px;
-    width: 375px;
-    background-color: rgb(94, 15, 90);
+    height: 100%;
+    width: 100%;
+    background:url('./../../assets/Image/Template@2x.png');
+    background-size: cover;
+    background-position: center center;  
     position: absolute;
 }
 // 3 thanh ke ngang>>>>>>>>>>>>>>>>>>>>>>>>>>>

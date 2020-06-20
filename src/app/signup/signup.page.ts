@@ -38,7 +38,7 @@ export class SignupPage implements OnInit
         avatar: 'default_user.jpeg',
         briefIntro: '',
         isVerified: false,
-      }).then(() => { this.__router.navigate(['/list-article']) })
+      }).then(() => { this.__router.navigate(['/signin']) })
     }).catch(err => alertify.error(err.message));
 
   }
