@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+.header {
+    position: relative;
+    background-color: #5e0f5a;
+}
+.topLeft img {
+    position: absolute;
+    width: 2rem;
+    margin-left: 1rem;
+    margin-top: 2rem;
+    background-color: white;
+    border-radius: 20px;
+}
+.nameUser {
+    position: absolute;
+    width: 4rem;
+    margin-top: 3rem;
+    margin-left: 3.5rem;
+    color: white;
+}
+.topRight img {
+    width: 4rem;
+    margin-top: 1rem;
+    margin-left: 14rem;
+}
+.menu {
+    background-color: #5e0f5a;
+    padding-top: 1rem;
+}
+.hr1 {
+    width: 4rem;
+    height: 3px;
+    background-color: white;
+    margin-left: 1rem;
+    margin-bottom: 3px;
+}
+.hr2 {
+    width: 3rem;
+    height: 3px;
+    background-color: white;
+    margin-left: 1rem;
+    margin-bottom: 3px;
+}
+.hr3 {
+    width: 2rem;
+    height: 3px;
+    background-color: white;
+    margin-left: 1rem;
+}
+.threeRound {
+    background-color: #5e0f5a;
+}
+.threeRound img {
+    width: 2rem;
+    border-radius: 2rem;
+}
+.imgJS {
+    position: relative;
+    width: 16rem;
+    padding-top: 0.5rem;
+    border-radius: 3rem;
+    box-shadow: #a2a9b4 5px 5px;
+}
+.imgAuthor {
+    position: absolute;
+    z-index: 1;
+    width: 4rem;
+    background-color: white;
+    border-radius: 3rem;
+    margin-top: 75%;
+    margin-left: 70%;
+}
+.forMore {
+    margin-top: 1.5rem;
+    margin-left: 6rem;
+    padding-left: 0.8rem;
+    padding-top: 0.5rem;
+    width: 7rem;
+    height: 2rem;
+    background-color: lightgrey;
+    border-radius: 2rem;
+}
+.aboutTech {
+    background-color: #f6f2f1;
+    padding-top: 1rem;
+}
+.contentTwo {
+    position: relative;
+    background-color: #595d7f;
+    width: 15rem;
+    height: 30rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+.contentTwoLeft img {
+    position: absolute;
+    z-index: 3;
+    width: 3.5rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    border-radius: 2rem;
+    background-color: white;
+}
+.contentTwoLeft p {
+    position: absolute;
+    margin-top: 6rem;
+    margin-left: 2.2rem;
+    color: white;
+}
+.contentTwoRight {
+    width: 11rem;
+    height: 7rem;
+    background-color: white;
+    z-index: 6;
+    position: absolute;
+    margin-left: 7rem;
+    margin-top: 1rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+.contentTwoRight .logo {
+    width: 11rem;
+    height: 2.3rem;
+}
+.contentTwoRight p {
+    margin-top: 2.5rem;
+    margin-left: 1rem;
+    color: #48345a;
+}
+.contentTwoRight a {
+    font-size: 0.7rem;
+    color: #48345a;
+    text-decoration: none;
+}
+.contentThree {
+    position: relative;
+    z-index: 1;
+    width: 12rem;
+    height: 30rem;
+    background-color: #595d7f;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    margin-left: 6rem;
+}
+.contentThreeLeft {
+    position: absolute;
+}
+.contentThreeLeft img {
+    margin-top: 2rem;
+    width: 3.5rem;
+    margin-left: 1rem;
+    border-radius: 2rem;
+    background-color: white;
+    box-shadow: #a2a9b4 5px 5px;
+}
+.lifeAndCoding {
+    padding-top: 2rem;
+    background-color: #f6f2f1;
+    font-size: 20px;
+    padding-left: 4rem;
+}
+.contentThreeLeft p {
+    margin-left: 1.5rem;
+    margin-top: 0.3rem;
+    color: #48345a;
+}
+.contentThreeRight {
+    position: absolute;
+    width: 11rem;
+    height: 7rem;
+    background-color: white;
+    z-index: 19;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+.contentThreeRight p {
+    margin-left: 1rem;
+    margin-top: 2.5rem;
+    color: #48345a;
+}
+.contentThreeRight a {
+    font-size: 0.7rem;
+    color: #48345a;
+    text-decoration: none;
+}
+.footer {
+    padding-top: 2rem;
+    background-color: #f6f2f1;
+}
+.footer p {
+    text-align: center;
+    color: #48345a;
+}
+ion-grid {
+    margin-top: 2rem;
+    color: #48345a;
+    text-align: center;
+}
