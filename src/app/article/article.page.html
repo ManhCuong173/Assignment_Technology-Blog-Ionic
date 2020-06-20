@@ -1,17 +1,91 @@
 <ion-header>
   <div class="header">
-    <div class="leftHeader">
-      <img class="img" src="../assets/Image/author.png">
-      <p>Robert</p>
+    <div class="topLeft">
+      <div class="imageuser">
+        <img class="img" src="../assets/Image/author.png">
+      </div>
     </div>
-    <div class="rightHeader">
+    <div class="topRight">
+      <div class="icon">
+        <p class="flex-item">Robert </p>
         <ion-input  class="flex-item"></ion-input>
         <ion-icon  class="flex-item" name="search-outline"></ion-icon>
         <ion-icon  class="flex-item"  name="menu-outline" ></ion-icon>
+    </div>
     </div>
   </div>
 </ion-header>
 
 <ion-content>
-
+  <div class="container">
+    <div class="content">
+      <div class="titleArticle">
+        <div class="titleKey">
+          <p style="color: #48345A;">TITLE OF ARTICLE</p>
+          <p style="margin-left: 130px; margin-top: 10px; font-size: 14px;">By Robert</p>
+        </div>
+        <div class="areaInfo">
+          <p>Lorem ipsum...</p>
+        </div>
+        <div class="footOfArea">
+          <p>1356 voted</p>
+          <p>10 Comment</p>
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+          <ion-icon name="easel-outline"></ion-icon>
+        </div>
+        <div class="tag">
+          <a>Tag: Javascript, Story</a>
+        </div>
+        <div class="comment">
+          <ion-textarea placeholder="Comment here"></ion-textarea>
+          <ion-button>Send</ion-button>
+        </div>
+        <div class="listComments">
+          <h4>Comments</h4>
+          <div class="comments">
+            <ion-row>
+              <ion-col size=4>
+                <img src="../assets/Image/author.png">
+              </ion-col>
+              <ion-col size=8> Lorem ipsums...</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=4>
+                <img src="../assets/Image/author.png">
+              </ion-col>
+              <ion-col size=8> Lorem ipsums...</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=4>
+                <img src="../assets/Image/author.png">
+              </ion-col>
+              <ion-col size=8> Lorem ipsums...</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=4>
+                <img src="../assets/Image/author.png">
+              </ion-col>
+              <ion-col size=8> Lorem ipsums...</ion-col>
+            </ion-row>
+          </div>
+        </div>
+        <div class="relatedArticles">
+          <h4>Related Articles</h4>
+          <p>Lorem ipsums...</p>
+          <p>Lorem ipsums...</p>
+          <p>Lorem ipsums...</p>
+          <p>Lorem ipsums...</p>
+        </div>
+        <div class="relatedTags">
+          <h4>Related Tags</h4>
+          <div class="perTag">
+            <p>Technology</p>
+            <p> Technology</p>
+            <p> Technology</p>
+            <p> Technology</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
