@@ -130,10 +130,8 @@
       <span>U</span>
     </div>
   </div>
-</ion-content>
-<ion-footer>
   <div class="addUser">
-    <h4>Add User</h4>
+    <p>Add User</p>
     <ion-item>
       <ion-input class="custom-class" placeholder="User name"></ion-input>
     </ion-item>
@@ -143,5 +141,23 @@
     <ion-item>
       <ion-input class="custom-class" type="Password" placeholder="Password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Role</ion-label>
+      <ion-select>
+        <ion-select-option value="U">User</ion-select-option>
+        <ion-select-option value="A">Author</ion-select-option>
+        <ion-select-option value="C">Co-Admin</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="gender">
+      <label >Male</label>
+      <input type="radio" name="gender"  value="male" />
+      <input type="radio" name="gender" value="female" />
+      <label >Female</label>
+    </ion-item>
+    <ion-button>Submit</ion-button>
   </div>
+</ion-content>
+<ion-footer>
+ 
 </ion-footer>
