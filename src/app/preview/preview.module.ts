@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminPageRoutingModule } from './admin-routing.module';
+import { PreviewPageRoutingModule } from './preview-routing.module';
 
-import { AdminPage } from './admin.page';
-import { ChartsModule } from 'ng2-charts';
+import { PreviewPage } from './preview.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChartsModule,
-    AdminPageRoutingModule
+    PreviewPageRoutingModule
   ],
-  declarations: [AdminPage]
+  declarations: [PreviewPage]
 })
-export class AdminPageModule { }
+export class PreviewPageModule {}

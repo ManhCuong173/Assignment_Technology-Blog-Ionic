@@ -6,25 +6,18 @@ import { LoginService } from './login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AddArticleGuard implements CanActivate
+export class ManageArticleGuard implements CanActivate
 {
-  constructor(private __logicService: LoginService, private __router: Router)
-  {
-  }
+  constructor(private __loginService: LoginService, private __router: Router)
+  { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
-
-    //logic
-    // if (this.__logicService.getUser().role == 'AD') {
-    //   return true
-    // }
-    // else {
-    //   this.__router.navigate(['/signin'])
-    //   return false;
-    // }
-    return true;
+    if (this.__loginService.getUser().role == 'CA' || this.__loginService.getUser().role == 'AD') return true;
+    else this.__router.navigate(['/signin'])
   }
+
+
 
 }

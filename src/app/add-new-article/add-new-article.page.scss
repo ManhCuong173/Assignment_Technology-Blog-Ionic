@@ -76,10 +76,11 @@ h3{
 
 ion-searchbar{
     margin-top: 15px;
+height: 36px;
 }
 
 .textFile{
-    height: 100px;
+    height: auto;
     border: solid 1px gray;
 }
 
@@ -134,37 +135,51 @@ ion-searchbar{
     position: absolute;
 }
 .TSS{
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 15px;
     width: 100%;
-    height: auto;
-    background-color: white;
-    border: solid 1px gray;
+    height: 100%;
+    background-color: #FFFF;
+    /* margin-left: 15px; */
+    /* margin-top: 15px; */
+    /* position: relative; */
+    border-radius: 4px;
+    color: #FFFF;
 
     .tag{
-
-        p{
-           
-            text-align: center;
-        }
-        width: 50px;
-        height: 25px;
-        background-color: #6C9ABC;
-        margin-left: 15px;
+        width: 100%;
+        height: fit-content;
+        background-color: #FFFF;
         margin-top: 15px;
         position: relative;
         border-radius: 4px;
-        &::after{
-            content: '';
+        color: #FFFF;
+
+    
+    p{
+        text-align: center;
+        position: relative;
+        background-color: #6C9ABC;
+        margin: 0.5rem;
+        display: inline-block;
+        height: 36px;
+        text-align: center;
+        margin: 5px 21px;
+        border-radius: 4px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        line-height: 36px;
+        padding: 0 5px;
+        
+        &:after {
+            content: "";
             position: absolute;
             width: 0;
             height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 20px solid #6C9ABC;
-            left: 100%;
-            top: 2.5px;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 26px solid #6C9ABC;
+            top: 9%;
+        }
         }
     }
 }

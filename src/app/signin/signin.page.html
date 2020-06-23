@@ -1,39 +1,42 @@
 <ion-header>
-
 </ion-header>
-
 <ion-content>
-  <div class="content">
-    <div id="menu">
-      <div id="hr1"></div>
-      <div id="hr2"></div>
-      <div id="hr3"></div>
+    <div class="content">
+        <div id="menu">
+            <div id="hr1"></div>
+            <div id="hr2"></div>
+            <div id="hr3"></div>
+        </div>
     </div>
-  </div>
-  <div>
-    <img class="logoJS" src="../assets/Image/logo_js_2.png">
-  </div>
-  <div class="form">
-    <div id="titleform">
-      <h3>Sign In</h3>
+    <div>
+        <img class="logoJS" src="../assets/Image/logo_js_2.png">
     </div>
-    <div class="inputs">
-      <ion-item>
-
-        <ion-input class="custom-class" placeholder="User name"></ion-input>
-      </ion-item>
-      <ion-item>
-
-        <ion-input class="custom-class" placeholder="Password" type="Password"></ion-input>
-      </ion-item>
-      <ion-button color="#48345A">
-        <p id="submit">Submit</p>
-      </ion-button>
+    <form #sF="ngForm" style="padding: 5rem" (ngSubmit)="submitSignInForm(sF)" novalidate>
+        <div class="form">
+            <p class="title">Sign In</p>
+            <div class="inputs">
+                <ion-item>
+                    <ion-input class="custom-class" placeholder="User name" name="email" ngModel></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input class="custom-class" placeholder="Password" type="Password" name="password" ngModel></ion-input>
+                </ion-item>
+                <ion-button color="#48345A" type="submit">
+                    <p id="submit">Submit</p>
+                </ion-button>
+            </div>
+        </div>
+    </form>
+    <div class="logoFGT">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-google"></ion-icon>
+        <ion-icon name="logo-tumblr"></ion-icon>
+        <ion-icon name="person-add-outline" [routerLink]="['/signup']"></ion-icon>
+        <p>
+            <a (click)='resetPassword()' class="forgetPassword">Forget</a>
+        </p>
     </div>
-  </div>
-  <div class="logoFGT">
-    <ion-icon name="logo-facebook"></ion-icon>
-    <ion-icon name="logo-google"></ion-icon>
-    <ion-icon name="logo-tumblr"></ion-icon>
-  </div>
+    <p style="position: fixed;bottom: 1rem;right: 1rem;">
+        <a [routerLink]="['/home-page']" style="color: #FFFF">Home page</a>
+    </p>
 </ion-content>

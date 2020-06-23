@@ -35,10 +35,10 @@ export class SignupPage implements OnInit
         role: 'NU',
         gender: gender,
         email: email,
-        avatar: 'default_user.jpeg',
+        avatar: '',
         briefIntro: '',
         isVerified: false,
-      }).then(() => { this.__router.navigate(['/list-article']) })
+      }).then(() => { this.__router.navigate(['/signin']) })
     }).catch(err => alertify.error(err.message));
 
   }

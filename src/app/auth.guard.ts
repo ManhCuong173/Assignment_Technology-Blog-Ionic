@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate
       return true
     }
     else {
-      this.__router.navigate(['add-product'])
+      this.__router.navigate(['/signin'])
       return false;
     }
   }

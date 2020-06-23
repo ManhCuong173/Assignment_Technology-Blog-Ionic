@@ -1,163 +1,167 @@
-
 <ion-content>
-  <div class="leftbar">
-    <div class="imageuser">
-      <img class="img" src="../assets/Image/author.png">
+    <div class="leftbar">
+        <div class="imageuser">
+            <img class="img" src="../assets/Image/author.png">
+        </div>
+        <div class="circle1 circle">
+            <ion-icon name="create-sharp" [routerLink]="['/user-normal',user.__id]" *ngIf='user'>
+            </ion-icon>
+        </div>
+        <div class="circle2 circle">
+            <ion-icon name="newspaper-outline" [routerLink]="['/add-new-article']"></ion-icon>
+        </div>
+        <div class="circle circle3 circle"></div>
     </div>
-    <div class="circle1"> </div>
-    <div class="circle2"></div>
-    <div class="circle3"></div>
-  </div>
 
-  <div class="topbar">
-    <p>Robert</p>
-    <ion-input ></ion-input>
-    <ion-icon  name="search-outline" ></ion-icon>
-    <ion-icon  name="menu-outline" ></ion-icon>
-  </div>
-
-  <div class="infouser">
-    <img  src="../assets/Image/author.png">
-    <span >Name:</span>
-    <span >Id:</span>
-    <ion-icon name="create-sharp"></ion-icon> 
-  </div>
-  <h4>Robert</h4>
-
-  <div class="chart">
-    <div class="infochart">
-      <p>This is chart</p>
+    <div class="topbar">
+        <p>Robert</p>
+        <ion-input></ion-input>
+        <ion-icon name="search-outline"></ion-icon>
+        <ion-icon name="menu-outline"></ion-icon>
     </div>
-    <h5>Total Article per Month</h5>
-  </div>
 
-  <ion-icon class="iconUp" name="caret-up-sharp"></ion-icon>
-
-  <div class="father">
-    <p class="titleFather">Total article per Month</p>
-    <div class="manager">
-
-      <div class="managerHeader"> 
-        <p>Top post |</p>
-        <p>Top reaction | </p>
-        <p>Top vote</p>
-      </div>
-
-        <p id="topReaction">Top reaction articles</p>
-
-      <div class="listTop">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="3">
-              <img  src="../assets/Image/author.png" >
-            </ion-col>
-
-            <ion-col size="7">
-                <p>by Rain</p>
-                <span>25 comments</span>
-                <span>10 voted</span>
-            </ion-col>
-
-            <ion-col size="2" id="count"> 
-              <span>25 </span>
-            </ion-col>
-            <ion-col size="12"><p>JavaScript webhooks</p></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="3">
-              <img  src="../assets/Image/author.png" >
-            </ion-col>
-
-            <ion-col size="7">
-                <p>by Rain</p>
-                <span>25 comments</span>
-                <span>10 voted</span>
-            </ion-col>
-
-            <ion-col size="2" id="count"> 
-              <span> 25 </span>
-            </ion-col>
-            <ion-col size="12"><p>JavaScript webhooks</p></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="3">
-              <img  src="../assets/Image/author.png" >
-            </ion-col>
-            <ion-col size="7">
-                <p>by Rain</p>
-                <span>25 comments</span>
-                <span>10 voted</span>
-            </ion-col>
-
-            <ion-col size="2" id="count"> 
-              <span> 25 </span>
-            </ion-col>
-            <ion-col size="12"><p>JavaScript webhooks</p></ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="3">
-              <img  src="../assets/Image/author.png" >
-            </ion-col>
-
-            <ion-col size="7">
-              
-
-                <p>by Rain</p>
-                <span>25 comments</span>
-                <span>10 voted</span>
-            </ion-col>
-
-            <ion-col size="2" id="count"> 
-              <span> 25 </span>
-            </ion-col>
-            <ion-col size="12"><p>JavaScript webhooks</p></ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-
-      <div class="pageNumber">
-        <ion-button class="previous"> 1 </ion-button>
-        <p>1/100</p>
-        <ion-button class="next"> 2 </ion-button>
-      </div>
-      <div class="search">
-        <ion-searchbar></ion-searchbar>
-      </div>
+    <div class="infouser">
+        <div class="adminAvatar">
+            <img src="../assets/Image/author.png">
+        </div>
+        <div class="adminInfo">
+            <p>
+                <span>Name: <strong *ngIf="user">{{user.username}}</strong></span>
+            </p>
+            <p>
+                <span>Gender: <strong *ngIf="user">{{user.gender}}</strong></span>
+            </p>
+        </div>
     </div>
-    <div class="convert">
-      <span class="P">P</span>
-      <hr>
-      <span>U</span>
+
+    <div class="chart">
+        <div class="infochart">
+            <div style="display: block;height:100%">
+                <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [colors]="chartColors" [legend]="showLegend" [chartType]="chartType" height="300">
+             </canvas>
+            </div>
+        </div>
+        <p style="margin-top: 10px;">Total Article per Month</p>
     </div>
-  </div>
-  <div class="addUser">
-    <p>Add User</p>
-    <ion-item>
-      <ion-input class="custom-class" placeholder="User name"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input class="custom-class" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input class="custom-class" type="Password" placeholder="Password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Role</ion-label>
-      <ion-select>
-        <ion-select-option value="U">User</ion-select-option>
-        <ion-select-option value="A">Author</ion-select-option>
-        <ion-select-option value="C">Co-Admin</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item class="gender">
-      <label >Male</label>
-      <input type="radio" name="gender"  value="male" />
-      <input type="radio" name="gender" value="female" />
-      <label >Female</label>
-    </ion-item>
-    <ion-button>Submit</ion-button>
-  </div>
-</ion-content>
-<ion-footer>
- 
-</ion-footer>
+
+    <ion-icon name="arrow-up-circle-outline" class="iconUp"></ion-icon>
+
+    <div class="father">
+        <div class="manager">
+
+            <div class="managerHeader">
+                <p (click)="activeDisplayArticle(isMostVotedActive)" *ngIf="isArticleField == true">Most voted articles </p>
+                <p (click)="activeDisplayArticle(isNewestActive)" *ngIf="isArticleField == true">Newest articles</p>
+            </div>
+
+            <p id="topReaction" *ngIf="isMostVotedActive == true ">Most voted articles</p>
+            <p id="topReaction" *ngIf="isNewestActive == true  ">Newest articles</p>
+
+            <div class="listTop" *ngIf="isArticleField == true">
+                <ion-grid *ngIf="mostVotedArticles && isMostVotedActive == true" class="mostInteractive">
+                    <ion-row *ngFor="let article of mostVotedArticles">
+
+                        <ion-col size="2" id="count">
+                            <span>{{article.voted}} </span>
+                        </ion-col>
+                        <ion-col size="7" style="margin-left: 1rem;">
+                            <p>votes</p>
+                            <span>{{article.numberComment}} comments</span>
+                        </ion-col>
+
+                        <ion-col size="12">
+                            <p><a [routerLink]="['/article',article.id]">{{article.title}}</a></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-grid *ngIf="newestArticles && isNewestActive == true">
+                    <ion-row *ngFor="let article of newestArticles" class="newestArticles">
+
+                        <ion-col size="7" style="margin-left: 1rem;">
+                            <span>{{article.createdDate}}</span>
+                        </ion-col>
+
+                        <ion-col size="12">
+                            <p><a [routerLink]="['/article',article.id]" style="color: #FFFF">{{article.title}}</a></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+            <div class="listTop" *ngIf="isUserField == true && user.role == 'AD'">
+                <ion-grid class="listUser mostInteractive">
+                    <ion-row *ngFor="let user of allUsers">
+                        <ion-col size="3">
+                            <img src={{user.storageURL}} style="width: 40px;
+                            height: 40px;">
+
+                        </ion-col>
+
+                        <ion-col size="9" style="padding-left: 1rem;">
+                            <p>Email: <span><strong>{{user.email}}</strong></span></p>
+                            <p>Role: <span><strong>{{user.role}}</strong></span></p>
+                        </ion-col>
+
+                        <ion-col size="12" *ngIf="user.role !== 'AD' ">
+                            <select (change)="changeRole($event, user.id)">
+                                <option *ngFor="let item of roleCate" [value]="item.id">{{item.role}}</option>
+                            </select>
+                            <ion-buttons>
+                                <ion-button color="danger" (click)="deleteUser(user.id)">Delete</ion-button>
+                            </ion-buttons>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-grid *ngIf="newestArticles && isNewestActive == true">
+                    <ion-row *ngFor="let article of newestArticles" class="newestArticles">
+
+                        <ion-col size="7" style="margin-left: 1rem;">
+                            <span>{{article.createdDate}}</span>
+                        </ion-col>
+
+                        <ion-col size="12">
+                            <p>{{article.title}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+
+            <div class="search">
+                <ion-searchbar style="height: 36px;
+                width: 70%;
+                margin: auto;margin-bottom:10px;"></ion-searchbar>
+            </div>
+        </div>
+        <div class="convert">
+            <span class="P" (click)="activeField(isArticleField)">P</span>
+            <hr>
+            <span (click)="activeField(isUserField)">U</span>
+        </div>
+        <div>
+            <div class="addUser" *ngIf="user.role == 'AD'">
+                <form #addUser="ngForm" (ngSubmit)="addNewUserByAdmin(addUser)" novalidate>
+                    <h4>Add User</h4>
+                    <ion-item>
+                        <ion-input class="custom-class" placeholder="User name" name="username" ngModel></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input class="custom-class" placeholder="Email" name="email" ngModel></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input class="custom-class" type="Password" placeholder="Password" name="password" ngModel></ion-input>
+                    </ion-item>
+                    <div class="gender">
+                        <label slot="start">Male</label>
+                        <input type="radio" name="gender" ngModel value="male" />
+                        <input type="radio" name="gender" ngModel value="female" />
+                        <label slot="end">Female</label>
+                    </div>
+                    <ion-button-groups>
+                        <ion-button type="submit">Thêm</ion-button>
+                        <ion-button type="reset" color="dark">Reset</ion-button>
+                    </ion-button-groups>
+                </form>
+            </div>
+
+        </div>
+    </div>
+

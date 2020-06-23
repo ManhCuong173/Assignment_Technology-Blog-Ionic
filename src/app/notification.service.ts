@@ -22,15 +22,19 @@ export class NotificationService
 
     return new Promise((resolve, reject) =>
     {
-      firebase.firestore().collection('Notification').where('to', '==', userId).get().then(snapshot =>
-      {
-        snapshot.docs.forEach(notfi =>
+      if (!userId) {
+        reject(new Error('Người dùng không tòn tại'))
+      } else {
+        firebase.firestore().collection('Notification').where('to', '==', userId).get().then(snapshot =>
         {
-          let result = Object.assign(notfi.data(), { id: notfi.id })
-          this.listNoti.push(result);
-          resolve(this.listNoti)
-        })
-      });
+          snapshot.docs.forEach(notfi =>
+          {
+            let result = Object.assign(notfi.data(), { id: notfi.id })
+            this.listNoti.push(result);
+            resolve(this.listNoti)
+          })
+        });
+      }
     })
   }
 }

@@ -13,6 +13,38 @@
     overflow: scroll;
 }
 
+.menu {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  
+    .menuButton {
+        width: 35%;
+        height: 2px;
+        position: relative;    
+        background: #ffff;
+        transform: translateY(-20px);
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 200%;
+            width: 120%;
+            height: 100%;
+            background: inherit;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 400%;
+            width: 150%;
+            height: 100%;
+            background: inherit;
+        }
+    }
+}
+
 .header{
     height: 100px;
     width: 100%;
@@ -78,13 +110,20 @@
 .article{
     display: flex;
     flex-direction: column;
-
+    padding: 20px 10px;
+    margin-bottom: 2rem;
+    height: 60vh;
+    overflow-y: auto;;
+    flex-direction: column;
+    padding: 20px 10px;
+    margin-bottom: 2rem;
 }
 .article h4{
     color: #9F73AA;
     margin-top: 30px;
     margin-left: 45px;
 }
+
 
 .textFile{
     width: 90%;
@@ -93,6 +132,27 @@
     box-shadow: 0 0 2px 1px grey;
     margin-left: 5%;
     margin-top: 10px;
+    position: relative;
+    background: #26213e;
+    color: #ffff;
+
+    .titleArticle {
+        width: 40%;
+        position: absolute;
+        font-size:14px;
+        font-style: italic;
+        bottom: 0;
+        left: 1rem;
+    }
+
+    .readMore {
+        position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 3;
+    background: #ffff;
+    border-radius: 50%;
+    }
 }
 
 .bottomLine{

@@ -6,10 +6,18 @@ ion-content{
     position: relative;
 }
 .content{
-    height: 533.5px;
-    width: 375px;
-    background-color: rgb(94, 15, 90);
+    height: 100%;
+    width: 100%;
+    background:url('./../../assets/Image/Template@2x.png');
+    background-size: cover;
+    background-position: center center;    
     position: absolute;
+    font-family: "Kozuka Mincho Pro";
+}
+.title {
+    text-align: center;
+    transform: translate(-18%,400%);
+    font-size: 20px;
 }
 // 3 thanh ke ngang>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #hr1{
@@ -39,10 +47,10 @@ ion-content{
 .logoJS{
     position: absolute;
     z-index: 2;
-    height: 15%;
-    width: 50%;
-    left: 170px;
-    top: 30px;
+    height: 8%;
+    width: 20%;
+    right: 1rem;
+    top: 3rem;
     transform: rotate(15deg);
 }
 .logoFGT{
@@ -70,7 +78,7 @@ ion-content{
     position: absolute;
     top: 65px;
     left: 105px;
-    font-family: "Kozuka Mincho Pro";
+
 }
 //cac input sign in
 .inputs {
@@ -106,5 +114,9 @@ ion-button{
 }
 #submit{
     font-family: "Kozuka Mincho Pro";
-    font-size: 8px;
+    font-size: 10px;
+}
+
+.forgetPassword {
+    font-size: 12px;
 }

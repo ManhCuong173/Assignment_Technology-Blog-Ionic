@@ -2,34 +2,55 @@
     margin: 0;
     padding: 0;
     height: auto;
+    font-family: "Kozuka Mincho Pro";
 }
+
+ion-content {
+    background: url("./../../assets/Image/Group\ 15@2x.png")
+}
+
+.container {
+    background: #f6f2f1;
+}
+
 .header {
     position: relative;
-    background-color: #5e0f5a;
+    background-color: #48345A;
 }
-.topLeft img {
-    position: absolute;
-    width: 2rem;
-    margin-left: 1rem;
-    margin-top: 2rem;
-    background-color: white;
-    border-radius: 20px;
+.topLeft 
+{
+    img {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin-left: 1rem;
+    }
+    .icon {
+        width: 30px;
+        height: 30px;
+        margin-left: 1rem;
+        font-size: 8px;
+        color: #FFFF;
+    }
 }
 .nameUser {
-    position: absolute;
-    width: 4rem;
-    margin-top: 3rem;
-    margin-left: 3.5rem;
-    color: white;
+    width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #FFFF;
+    font-size: 12px;
 }
 .topRight img {
     width: 4rem;
-    margin-top: 1rem;
-    margin-left: 14rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
 }
 .menu {
-    background-color: #5e0f5a;
-    padding-top: 1rem;
+    background-color: #48345A;
+    padding-top: 2rem;
 }
 .hr1 {
     width: 4rem;
@@ -52,50 +73,81 @@
     margin-left: 1rem;
 }
 .threeRound {
-    background-color: #5e0f5a;
+    background-color: #48345A;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
 }
 .threeRound img {
-    width: 2rem;
-    border-radius: 2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
 }
 .imgJS {
     position: relative;
-    width: 16rem;
+    width: 75%;
     padding-top: 0.5rem;
-    border-radius: 3rem;
-    box-shadow: #a2a9b4 5px 5px;
+    margin-top: 2rem;
+    background: #ffff;
+    height: 250px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 6px 0px #9952525e;
 }
 .imgAuthor {
-    position: absolute;
-    z-index: 1;
-    width: 4rem;
+    width: 6rem;
     background-color: white;
     border-radius: 3rem;
-    margin-top: 75%;
-    margin-left: 70%;
+    position: absolute;
+    right: 2rem;
+    bottom: -2rem;
+    z-index: 1;
+    box-shadow: 0 3px 6px 0px #9952525e;
 }
 .forMore {
     margin-top: 1.5rem;
     margin-left: 6rem;
-    padding-left: 0.8rem;
-    padding-top: 0.5rem;
-    width: 7rem;
-    height: 2rem;
-    background-color: lightgrey;
-    border-radius: 2rem;
+    text-align: right;
 }
 .aboutTech {
     background-color: #f6f2f1;
-    padding-top: 1rem;
-}
-.contentTwo {
+    padding-top: 4rem;
     position: relative;
-    background-color: #595d7f;
-    width: 15rem;
-    height: 30rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 25px;
+        bottom: -24px;
+        background: #f6f2f1;
+    }
 }
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;  
+    background-color: #595d7f;
+    width: 80%;
+    height: 30rem;
+}
+
+.contentTwo {
+    width: 80%;
+    height: 31rem;
+    background: #595d7f;
+    /* margin: auto; */
+    padding: 10px 0 10px 10px;
+    border-top-left-radius: 50px;
+    float: right;
+    border-bottom-left-radius: 50px;
+}
+
+
 .contentTwoLeft img {
     position: absolute;
     z-index: 3;
@@ -112,15 +164,14 @@
     color: white;
 }
 .contentTwoRight {
-    width: 11rem;
-    height: 7rem;
+    width: 90%;
+    height: 9rem;
     background-color: white;
-    z-index: 6;
-    position: absolute;
-    margin-left: 7rem;
-    margin-top: 1rem;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    margin: 10px 0;
+    border-top-left-radius: 35px;
+    float: right;
+    border-bottom-left-radius: 10px;
+    position: relative;
 }
 .contentTwoRight .logo {
     width: 11rem;
@@ -129,22 +180,25 @@
 .contentTwoRight p {
     margin-top: 2.5rem;
     margin-left: 1rem;
-    color: #48345a;
+    color: #efefef;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 5px;
 }
 .contentTwoRight a {
     font-size: 0.7rem;
     color: #48345a;
     text-decoration: none;
+text-align: right;
 }
 .contentThree {
     position: relative;
     z-index: 1;
-    width: 12rem;
+    width: 80%;
     height: 30rem;
     background-color: #595d7f;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    margin-left: 6rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+padding: 10px 0 10px 10px;
 }
 .contentThreeLeft {
     position: absolute;
@@ -161,7 +215,8 @@
     padding-top: 2rem;
     background-color: #f6f2f1;
     font-size: 20px;
-    padding-left: 4rem;
+    text-align: right;
+    margin-bottom: 2rem;
 }
 .contentThreeLeft p {
     margin-left: 1.5rem;
@@ -169,15 +224,13 @@
     color: #48345a;
 }
 .contentThreeRight {
-    position: absolute;
-    width: 11rem;
-    height: 7rem;
+    width: 90%;
+    height: 9rem;
     background-color: white;
-    z-index: 19;
-    margin-left: 1.5rem;
-    margin-top: 1rem;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    margin: 10px 0;
+    border-top-right-radius: 35px;
+    float: left;
+    border-bottom-right-radius: 10px;
 }
 .contentThreeRight p {
     margin-left: 1rem;

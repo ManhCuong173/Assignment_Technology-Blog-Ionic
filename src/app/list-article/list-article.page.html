@@ -1,70 +1,55 @@
 <ion-header>
-  <div class="header">
-    <div class="menu">
-      <div class="hr1"></div>
-      <div class="hr2"></div>
-      <div class="hr3"></div>
+    <div class="header">
+        <div class="menu">
+            <div (click)="openMenu()" class="menuButton">
+            </div>
+        </div>
+        <div class="tech">
+            <ion-input placeholder="TECH"></ion-input>
+        </div>
     </div>
-    <div class="tech">
-      <ion-input placeholder="TECH" ></ion-input>
-    </div>
-  </div>
 </ion-header>
 
 <ion-content>
-  <div class="container">
-      <div class="content">
-        <div class="article-title">
-          <div class="article">
-            <h4 class="flex-item">Article Title</h4>
-            <div class="flex-item textFile">This is text Title</div>
-            <div class="flex-item bottomLine">
-              <p>15 vote, 50 comments</p>
-              <ion-icon name="play-circle-outline"></ion-icon>
-              <div class="img">
-                <img src="../assets/Image/author.png">
-              </div>
+    <div class="top__menu" *ngIf="isMenuShown">
+        <div *ngFor="let item of listCategory">
+            <div (click)="getArticleByCate(item.id, 4)" class="listArticleByCate">
+                {{item.name}}
+                <ul *ngFor="let article of listArticleShowMenu">
+                    <li (click)="navigateSpecificArticle(article.id)" *ngIf="article.cateID == item.id">{{article.title}}</li>
+                    <li>
+                        <a style="color: lightblue" *ngIf="article.cateID == item.id" (click)="moreArticle(item.id)">Xem thêm</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <div class="article">
-            <h4 class="flex-item">Article Title</h4>
-            <div class="flex-item textFile">This is text Title</div>
-            <div class="flex-item bottomLine">
-              <p>15 vote, 50 comments</p>
-              <ion-icon name="play-circle-outline"></ion-icon>
-              <div class="img">
-                <img src="../assets/Image/author.png">
-              </div>
-            </div>
-          </div>
-          <div class="article">
-            <h4 class="flex-item">Article Title</h4>
-            <div class="flex-item textFile">This is text Title</div>
-            <div class="flex-item bottomLine">
-              <p>15 vote, 50 comments</p>
-              <ion-icon name="play-circle-outline"></ion-icon>
-              <div class="img">
-                <img src="../assets/Image/author.png">
-              </div>
-            </div>
-          </div>
-          <div class="article">
-            <h4 class="flex-item">Article Title</h4>
-            <div class="flex-item textFile">This is text Title</div>
-            <div class="flex-item bottomLine">
-              <p>15 vote, 50 comments</p>
-              <ion-icon name="play-circle-outline"></ion-icon>
-              <div class="img">
-                <img src="../assets/Image/author.png">
-              </div>
-            </div>
-          </div>
-          <div class="page">
-            <ion-button > 	&lsaquo; </ion-button>
-            <p> 100/100</p>
-            <ion-button> 	&rsaquo; </ion-button>
-          </div>
         </div>
-      </div>
-  </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="article-title">
+                <div class="article">
+                    <h4 class="flex-item">Công nghệ: </h4>
+                    <div *ngFor="let item of exampleArrToDisplay ">
+                        <div class="flex-item textFile">
+                            <strong class="titleArticle">{{item.title}}</strong>
+                            <div class="readMore" (click)="navigateSpecificArticle(item.id)">
+
+                                <img src='https://img.icons8.com/dotty/80/000000/reading-ebook.png' style=" width: 30px; height: 25px; " />
+                            </div>
+                            <img src={{item.imageURLShow}} *ngIf="item.images.length " style=" width: 50%; height: 80%; position: absolute; z-index: 1; object-fit: contain; top: 10px; right: 0; " />
+                        </div>
+                        <div class="flex-item bottomLine ">
+                            <p>15 vote, 50 comments</p>
+
+                        </div>
+                    </div>
+
+                    <ion-infinite-scroll threshold="100px " (ionInfinite)="loadData($event) ">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles " loadingText="Loading more data... " position="top ">
+                        </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>

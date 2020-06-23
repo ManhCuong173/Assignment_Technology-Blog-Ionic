@@ -1,91 +1,72 @@
 <ion-header>
-  <div class="header">
-    <div class="topLeft">
-      <div class="imageuser">
-        <img class="img" src="../assets/Image/author.png">
-      </div>
+    <div class="header">
+        <div class="topLeft">
+            <div class="imageuser">
+                <img class="img" src="">
+            </div>
+        </div>
+        <div class="topRight ">
+            <div class="icon ">
+                <p class="flex-item ">Robert </p>
+                <ion-input class="flex-item "></ion-input>
+                <ion-icon class="flex-item " name="search-outline "></ion-icon>
+                <ion-icon class="flex-item " name="menu-outline "></ion-icon>
+            </div>
+        </div>
     </div>
-    <div class="topRight">
-      <div class="icon">
-        <p class="flex-item">Robert </p>
-        <ion-input  class="flex-item"></ion-input>
-        <ion-icon  class="flex-item" name="search-outline"></ion-icon>
-        <ion-icon  class="flex-item"  name="menu-outline" ></ion-icon>
-    </div>
-    </div>
-  </div>
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <div class="content">
-      <div class="titleArticle">
-        <div class="titleKey">
-          <p style="color: #48345A;">TITLE OF ARTICLE</p>
-          <p style="margin-left: 130px; margin-top: 10px; font-size: 14px;">By Robert</p>
+    <div class="container ">
+        <div class="content ">
+            <div class="titleArticle ">
+                <div class="titleKey ">
+                    <p style="color: #48345A; " *ngIf="article" style="text-transform: uppercase;">{{article.title}}</p>
+                    <p style="margin-left: 130px; margin-top: 10px; font-size: 14px; " *ngIf="article">{{article.createdDate}}</p>
+                </div>
+                <div class="areaInfo ">
+                    <div *ngIf="article">
+                        <div [innerHTML]='article.content'>
+                        </div>
+                        <p>
+                            <i class="far fa-thumbs-up" (click)="voteArticle()" *ngIf="article"></i> Like if you like it
+                            <i class="far fa-thumbs-up" *ngIf="article == undefined">Like if you like it</i>
+                        </p>
+                    </div>
+                </div>
+                <div class="footOfArea ">
+                    <p *ngIf="article"> <strong>{{article.voted}}</strong> Voted</p>
+                    <p *ngIf="listComments">{{listComments.length}} Comment</p>
+                </div>
+                <div class="tag ">
+                    <a>Tag: <i *ngIf="article"><span *ngFor="let tag of article.tags">{{tag}},</span></i></a>
+                </div>
+                <div class="comment ">
+                    <form #comment="ngForm" (ngSubmit)="addComment(comment)">
+                        <ion-textarea placeholder="Comment here " name="commentValue" ngModel></ion-textarea>
+                        <ion-button type="submit">Send</ion-button>
+                    </form>
+                </div>
+                <div class="listComments ">
+                    <h4>Comments</h4>
+                    <div class="comments" *ngIf="listComments">
+                        <ion-row *ngFor="let comment of listComments">
+                            <ion-col size=4>
+                                <img src="../assets/Image/author.png ">
+                                <p><span><strong>{{comment.userName}}</strong></span></p>
+                            </ion-col>
+                            <ion-col size=8> {{comment.content}}.</ion-col>
+                        </ion-row>
+                    </div>
+                </div>
+                <div class="relatedArticles ">
+                    <h4>Related Articles</h4>
+                    <div *ngIf="listRelatedArticles">
+                        <p *ngFor="let item of listRelatedArticles"><a [routerLink]="['/article',item.id]">{{item.title}}</a></p>
+                    </div>
+                </div>
+                <div></div>
+            </div>
         </div>
-        <div class="areaInfo">
-          <p>Lorem ipsum...</p>
-        </div>
-        <div class="footOfArea">
-          <p>1356 voted</p>
-          <p>10 Comment</p>
-          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-          <ion-icon name="easel-outline"></ion-icon>
-        </div>
-        <div class="tag">
-          <a>Tag: Javascript, Story</a>
-        </div>
-        <div class="comment">
-          <ion-textarea placeholder="Comment here"></ion-textarea>
-          <ion-button>Send</ion-button>
-        </div>
-        <div class="listComments">
-          <h4>Comments</h4>
-          <div class="comments">
-            <ion-row>
-              <ion-col size=4>
-                <img src="../assets/Image/author.png">
-              </ion-col>
-              <ion-col size=8> Lorem ipsums...</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size=4>
-                <img src="../assets/Image/author.png">
-              </ion-col>
-              <ion-col size=8> Lorem ipsums...</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size=4>
-                <img src="../assets/Image/author.png">
-              </ion-col>
-              <ion-col size=8> Lorem ipsums...</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size=4>
-                <img src="../assets/Image/author.png">
-              </ion-col>
-              <ion-col size=8> Lorem ipsums...</ion-col>
-            </ion-row>
-          </div>
-        </div>
-        <div class="relatedArticles">
-          <h4>Related Articles</h4>
-          <p>Lorem ipsums...</p>
-          <p>Lorem ipsums...</p>
-          <p>Lorem ipsums...</p>
-          <p>Lorem ipsums...</p>
-        </div>
-        <div class="relatedTags">
-          <h4>Related Tags</h4>
-          <div class="perTag">
-            <p>Technology</p>
-            <p> Technology</p>
-            <p> Technology</p>
-            <p> Technology</p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </ion-content>

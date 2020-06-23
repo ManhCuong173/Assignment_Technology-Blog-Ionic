@@ -41,6 +41,11 @@ ion-content{
  }
 //  /////////////////////
 
+.circle {
+    text-align: center;
+    padding-top: 0.3rem;
+}
+
 // triple circle
 .circle1{
     margin-top: 30px;
@@ -103,65 +108,68 @@ ion-content{
 }
 // ///////
 .infouser {
-    height: 60px;
-    width: 210px;
     margin-top: 115px;
     margin-left: 70px;
-
 }
 .infouser img{
 
-    height: 90%;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 0 2px 1px grey;
-    float: left;
-}
-.infouser span{
-    float: left;
-    width: 60px;
-    margin-left: 20px;
-}
-.infouser ion-icon{
-    margin-top: 45px;
-    margin-left: 60px;
-}
-h4{
-    margin-left: 70px;
-    color: rgb(216, 36, 135);
-    margin-top:10px;
+
+    img{
+        height: 50px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: 0 0 2px 1px grey;
+        float: left;
+    }
+
+    span{
+        width: 60px;
+        margin-left: 20px;
+    
+        strong{
+            width: 80%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    ion-icon{
+        float: right;
+        margin-right: 1rem;
+    }
 }
 
 .chart{
-    background-color: rgb(243, 243, 243);
     width: 180px;
-    height: 200px;
     margin-left: 83px;
     margin-top: 30px;
 }
  .infochart{
-    width: 180px;
+     width: 180px;
     height: 200px;
-    box-shadow: 0 0 1px 2px gray;
+    box-shadow: 2px 1px 4px 0px grey;
     border-radius: 5%;
  }
-h5{
+ h5{
     margin-top: 10px;
 }
 
 .iconUp{
     width: 10%;
     height: 10%;
-    float: right;
-    margin-top: 20px;
-    margin-right: 8px;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index:1000;
 }
 // Div cha chứa Manager & Convert
 .father{
     width: 100%;
-    height: auto;
+    height: 100%;
     margin-top: 70px;
-
+    position: relative;
+    
 }
 .titleFather{
     transform: translate(55px, 13px);
@@ -173,7 +181,7 @@ h5{
     border-radius: 30px;
     height: auto;
     overflow: auto;
-    float: left;
+    /* float: left; */
     margin-top: 20px;
     box-shadow: 20px -20px 1px 12px #545985;
     margin-left: 8px;
@@ -189,12 +197,16 @@ h5{
     height: 130px;
     width: 9%;
     border-radius: 10px;
-    background-color: rgb(234, 240, 232);
-
-    margin-left: 3px;
-    margin-top: 70px;
+    background-color: #eaf0e8;
     display: flex;
     flex-direction: column;
+    top: 5rem;
+
+    span:hover {
+        border: #FFFF;
+        background: gray;
+        color: #FFFF;
+    }
 }
 
 .convert hr {
@@ -202,7 +214,7 @@ h5{
     height: 2px !important;
     width: 17px !important;
     background: rgb(180, 175, 175) !important;
-  }
+}
 
 .convert span{
     height: 20%;
@@ -217,12 +229,16 @@ h5{
 }
 
 .managerHeader{
-
+    
     transform: translate(0px, 25px);
     border-radius: 2px;
     box-shadow: 0 3px 6px 0.3px #D7D7D7;
     width: 97%;
     margin-left: 3px;
+    
+    p:hover {
+        color: lightcoral;
+    }
 }
 .managerHeader p {
     display: inline;
@@ -239,7 +255,19 @@ h5{
 .listTop{
     margin-top: 20px;
     
-
+    .mostInteractive {
+        overflow-y: auto;
+        height: 300px;
+    }
+    
+    .newestArticles {
+        background: #545985;
+        margin: 5px 10px;
+        border-radius: 10px;
+        color: #FFFF;
+    max-width: 90%;
+    margin: 10px auto;
+}
 }
 
 .listTop ion-grid{
@@ -251,6 +279,9 @@ h5{
 
 .listTop ion-row{
     padding: 15px 15px;
+    border-bottom: 1px solid;
+    width: 80%;
+    margin: auto;
 }
 
 .listTop ion-col img{
@@ -264,11 +295,11 @@ h5{
     font-size: 10px;
 }
 
- #count{
+#count{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35px;
+    height: 30px;
     width: 40px;
     background-color: #545985; border-radius: 50%;color: white;
 }
@@ -301,10 +332,59 @@ h5{
 }
 
 .search{
-   margin-top: 10px;
+    margin-top: 10px;
 }
 
 .addUser{
+    width: 80%;
+    margin: auto;
+    form {
+
+        h4{
+            color: #d82487;
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+        margin-top: 2rem;
+        }
+        ion-item{
+            ion-input {
+                width: 60%;
+                margin: auto 0.3rem;
+                text-align: center;
+                font-size: 12px;
+            }
+        }
+        .gender {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10px;
+            
+            label {
+                font-family: 'Kozuka Mincho Pro';
+                font-size: 13px;
+                padding: 0 2.5px;
+                color: #958e8e;
+            }
+        
+            input {
+                padding: 0 2.5px;
+            }
+        }
+}
+
+    ion-button-groups {
+        display: flex;
+        justify-content: center;
+
+        ion-button {
+            margin: 0 0.5rem;
+            padding: 0.3rem;
+        }
+    }
+
+=======
     font-family: "Kozuka Mincho Pro";
     width: 70%;
     margin-left: 15%;
