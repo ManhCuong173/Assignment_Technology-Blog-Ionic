@@ -1,0 +1,166 @@
+<ion-header>
+
+</ion-header>
+
+<div class="header">
+    <div class="topLeft">
+        <img src="{{userAvatarURL}}" *ngIf="isAnonymous == false">
+        <ion-icon class="icon" name="create-outline" [routerLink]="['/user-normal',user.__id]"></ion-icon>
+    </div>
+    <div class="nameUser" *ngIf="user">
+        {{user.email}}
+    </div>
+    <div class="nameUser" *ngIf="isAnonymous == true">
+        Anonymous
+    </div>
+    <div class="topRight">
+        <img src="../../assets/Image/logo_js_2.png">
+    </div>
+</div>
+
+
+<ion-content>
+    <div class="container">
+        <div class="menu">
+            <div class="hr1"></div>
+            <div class="hr2"></div>
+            <div class="hr3"></div>
+        </div>
+        <div class="threeRound">
+            <img src="../../assets//Image/author-sub-icon.png" style="margin-left: 1rem;" *ngIf="isAdmin" [routerLink]="['/admin']">
+            <img src="../../assets/Image/icon1.PNG" style="margin-left: 1rem;">
+            <img src="../../assets/Image/icon2.PNG" style="margin-left: 1rem;">
+            <img src="../../assets/Image/icon3.PNG" style="margin-left: 1rem;" (click)="logOut()">
+        </div>
+        <div class="contentOne" style="position: relative;">
+            <div class="imgAuthor">
+                <img src="../../assets/Image/author.png">
+            </div>
+            <div class="imgJS">
+                <div>
+                    <img _ngcontent-goo-c144="" src="../../assets/Image/js.png" style="width:261px;height:200px">
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="aboutTech">
+            <h4 style="color:#595D7F;margin-left: 0.5rem;">ABOUT <span style="color: #f542ec;">TECH</span></h4>
+
+        </div>
+
+        <div style="background-color: #F6F2F1;">
+            <div class="contentTwo">
+                <div class="contentTwoRight" *ngFor="let item of newPostsOnTech ">
+                    <img src={{item.imageURLShow}} *ngIf="item.images.length" style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    border-top-left-radius: 34px;
+                    border-bottom-left-radius: 20px;
+                    z-index: 1;
+                    object-fit: contain;" />
+                    <div class="logo" style="position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 2rem;
+                ">
+                        <img src="../../assets/Image/voteicon.jpg" style="width:1.5rem;">
+                        <img src="../../assets/Image/commenticon.jpg" style="width:2rem;">
+                    </div>
+                    <div style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: 2;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                    flex-direction: column;">
+                        <p>{{item.title}}</p>
+                        <a href="javascript:void(0)" style="margin-left:6.5rem;" [routerLink]="['/article',item.id]">Read more...</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="forMore">
+                <a (click)="navigateSpecificArticle('8DONo4cPmZzQ71qi4mQR')">For more ...</a>
+            </div>
+        </div>
+
+        <div class="lifeAndCoding">
+            <div style="color:#595D7F;">LIFE <span style="color: #f542ec;">AND CODING</span></div>
+        </div>
+
+        <div style="background-color:#F6F2F1;">
+            <div class="contentThree">
+                <div class="contentThreeRight" *ngFor="let item of newPostsOnBook">
+                    <div class="logo" style="margin-left: 7rem;">
+                        <img src="../../assets/Image/voteicon.jpg" style="width:1.5rem;">
+                        <img src="../../assets/Image/commenticon.jpg" style="width:2rem;">
+                    </div>
+                    <p>{{item.title}}</p>
+                    <a href="javascript:void(0)" style="margin-left:6.5rem;" (click)="navigateSpecificArticle(item.id)">Read more...</a>
+                </div>
+            </div>
+            <div class="forMore">
+                <a (click)="navigateSpecificArticle('u3FJKpgRLSM9OYMH36gK')">For more ...</a>
+            </div>
+        </div>
+
+        <div class="aboutTech">
+            <h4 style="color:#595D7F;"> <span style="color: #f542ec;">BOOK</span></h4>
+
+        </div>
+
+        <div style="background-color: #F6F2F1;">
+            <div class="contentTwo">
+                <div class="contentTwoRight" *ngFor="let item of newPostsOnStory ">
+                    <div class="logo" style="margin-left: 7rem;">
+                        <img src="../../assets/Image/voteicon.jpg" style="width:1.5rem;">
+                        <img src="../../assets/Image/commenticon.jpg" style="width:2rem;">
+                    </div>
+                    <p>{{item.title}}</p>
+                    <a href="javascript:void(0)" style="margin-left:6.5rem;" (click)="navigateSpecificArticle(item.id)">Read more...</a>
+                </div>
+
+            </div>
+            <div class="forMore">
+                <a (click)="navigateSpecificArticle('
+                aXha1x9DA2IPWBXiHNxT
+                ')">For more ...</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Most popular tags</p>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        Technology
+                    </ion-col>
+                    <ion-col size="6">
+                        Technology
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        Technology
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="6">
+                        Technology
+                    </ion-col>
+                    <ion-col size="6">
+                        Technology
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        Technology
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>

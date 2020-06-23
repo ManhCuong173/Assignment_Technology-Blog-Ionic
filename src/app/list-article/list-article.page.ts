@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification.service';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase'
 import { Socket } from 'ngx-socket-io';
 import { UtilsService } from '../utils.service';
 import { PostsService } from '../posts.service';
 import { AdminServiceService } from '../admin-service.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IonInfiniteScroll } from '@ionic/angular'
 declare let alertify: any;
 @Component({
   selector: 'app-list-article',
@@ -14,6 +15,13 @@ declare let alertify: any;
 })
 export class ListArticlePage implements OnInit
 {
+
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  articlesByCateID: any;
+  cateID: String;
+  exampleArrToDisplay = [];
+  addMoreArticles: Number = 5;
+  isActiveInfiniteScroll: boolean = true;
 
   allArticles: any;
   // all newly article limit by 5
@@ -28,7 +36,7 @@ export class ListArticlePage implements OnInit
   // the number of nofication which isn't read
   notReadNumber: any = 0;
 
-  constructor(private __notifService: NotificationService, private __utilsSerice: UtilsService, private __postService: PostsService, private __router: Router, private __socket: Socket, private adminService: AdminServiceService)
+  constructor(private __notifService: NotificationService, private __utilsSerice: UtilsService, private __postService: PostsService, private __router: Router, private __socket: Socket, private adminService: AdminServiceService, private __adminService: AdminServiceService, private __activedRoute: ActivatedRoute)
   {
     this.getAllNotification();
     this.getAllCategory();
@@ -44,6 +52,9 @@ export class ListArticlePage implements OnInit
         if (noti.id == data) noti.color = '#393e46';
       });
     });
+
+    this.cateID = this.__activedRoute.snapshot.paramMap.get('cate_id');
+    this.getArticleByCateID(this.cateID);
   }
 
   ngOnInit()
@@ -132,13 +143,13 @@ export class ListArticlePage implements OnInit
     this.__socket.emit('read-notification-change-color', notiID)
     firebase.firestore().collection('Notification').doc(notiID).update({ isReaded: true, color: '#393e46' }).then(() =>
     {
-      this.__router.navigate(['/article-detail', postID])
+      this.__router.navigate(['/article', postID])
     })
   }
   navigateSpecificArticle(postID)
   {
     console.log(postID)
-    this.__router.navigate(['/article-detail', postID])
+    this.__router.navigate(['/article', postID])
   }
   openMenu()
   {
@@ -150,4 +161,63 @@ export class ListArticlePage implements OnInit
     this.__router.navigate(['/homepage'])
   }
 
+  loadData(event)
+  {
+    setTimeout(() =>
+    {
+      this.loadMoreData();
+      event.target.complete();
+
+      if (this.isActiveInfiniteScroll == false) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  loadMoreData()
+  {
+    // còn phần tử thì load
+    if (this.articlesByCateID.length <= 10) {
+      for (let i = 0; i < this.articlesByCateID.length; i++) {
+        this.exampleArrToDisplay.push(this.articlesByCateID[i])
+      };
+      this.articlesByCateID.splice(0, this.articlesByCateID.length);
+      this.isActiveInfiniteScroll = false;
+    }
+
+    // không thì dừng lại tại vị trí này
+    else {
+      if (this.articlesByCateID.length > 10) {
+        for (let i = 0; i < 10; i++) {
+          this.exampleArrToDisplay.push(this.articlesByCateID[i])
+        };
+        this.articlesByCateID.splice(0, 10);
+      } else {
+        for (let i = 0; i < this.articlesByCateID.length; i++) {
+          this.exampleArrToDisplay.push(this.articlesByCateID[i])
+        };
+        this.articlesByCateID.splice(0, this.articlesByCateID.length);
+      }
+    }
+  }
+
+  async getArticleByCateID(cateID)
+  {
+    try {
+      let allArticle: any;
+      allArticle = await this.__adminService.getAllArticle();
+      this.articlesByCateID = allArticle.filter(article => article.cateID == cateID);
+      for (let article of this.articlesByCateID) {
+        if (article.images.length) {
+          firebase.storage().ref('admin/media/images').child(article.images[0]).getDownloadURL().then(url =>
+          {
+            article = Object.assign(article, { imageURLShow: url })
+          })
+        }
+      }
+      this.loadMoreData();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }

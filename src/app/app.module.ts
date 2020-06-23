@@ -33,6 +33,7 @@ import { DataService } from './data.service';
 import { LoginService } from './login.service';
 import { NotificationService } from './notification.service';
 import { UtilsService } from './utils.service';
+import { ManageArticleGuard } from './manage-article.guard';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -56,6 +57,7 @@ export function initConfiguration(loginService: LoginService)
     AuthService,
     AuthGuard,
     AddArticleGuard,
+    ManageArticleGuard,
     AdminServiceService,
     NotificationService
   ],

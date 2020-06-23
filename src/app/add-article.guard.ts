@@ -8,19 +8,23 @@ import { LoginService } from './login.service';
 })
 export class AddArticleGuard implements CanActivate
 {
-  constructor(private __logicService: LoginService, private __router: Router) { }
+  constructor(private __logicService: LoginService, private __router: Router)
+  {
+  }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
   {
+
     //logic
-    if (this.__logicService.user.email == 'daomanhcuong173@gmail.com') {
-      return true
-    }
-    else {
-      this.__router.navigate(['homepage'])
-      return false;
-    }
+    // if (this.__logicService.getUser().role == 'AD') {
+    //   return true
+    // }
+    // else {
+    //   this.__router.navigate(['/signin'])
+    //   return false;
+    // }
+    return true;
   }
 
 }

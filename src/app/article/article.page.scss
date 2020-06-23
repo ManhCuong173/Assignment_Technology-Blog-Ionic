@@ -1,26 +1,209 @@
-* {
+*{
+    height: auto;
+}
+ 
+*::-webkit-scrollbar,::-webkit-scrollbar{
+    display: none;
+}
+.container{
+    height: 100%;
+    overflow: scroll;
+}
+
+p{
     margin: 0;
     padding: 0;
     font-family: "Kozuka Mincho Pro";
 }
-
+a{  margin: 0;
+    padding: 0;
+    font-family: "Kozuka Mincho Pro";}
 .header{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 90px;
+}
+// phan chua anh user
+.topLeft{
     background-color: #48345A;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
+    width: 20%;
+}
+.imageuser{
+    width: 40px;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    margin-left: 10px;
+ }
+// ten + icon 
+.topRight{
+    width: 80%;
+    background-color: #48345A;
+    ion-icon{
+        color: white;
+        width: 10%;
+    };
+    ion-input{
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 25%;
+        height: 45%;
+    }
 }
 
-.leftHeader{
-    background-color: yellow;
-    height: 100%;
-    width: 25%;
-}
-.rightHeader{
 
+
+.icon{
     display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 75%;
-    color: white;
+    justify-content: end;
+    justify-items: center;
+    margin-top: 40px;
+    p{
+        color: white;
+        width: 90px;
+        padding-top: 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+
+// Content
+.content{
+    margin: 0;
+    padding: 0;
+    background-color: #48345A;
+    width: 100%;
+    height: auto;
+}
+
+.titleArticle{
+    height: auto;
+    background-color: white;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+    padding-bottom: 5rem;
+}
+.titleKey{
+    margin-left: 80px;
+    padding-top: 25px;
+}
+
+.areaInfo{
+    margin-top: 15px;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 15px;
+    box-shadow: 0px 3px 6px 0px #A8A8A8;
+    background-color: white;
+    padding: 10px;
+    p{
+        transform: translateX(15px);
+         i:hover {
+             color: lightcoral;
+        }
+    }
+}
+
+
+.footOfArea{
+    margin-top: 10px;
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+
+    p{
+        margin-left: 5px;
+        float: left;
+    }
+
+
+}
+
+.tag{
+    width: 90%;
+    margin-left: 5%;
+clear: both;
+}
+
+.comment{
+    margin-top: 15px;
+    width: 90%;
+    margin-left: 5%;
+    ion-textarea{
+        --background: #F5EAEA;
+        width: 100%;
+        height: 110px;
+        box-shadow: 0px 3px 6px 0px #A8A8A8;
+    }
+    ion-button{
+        color: rgb(49, 47, 47);
+        height: 25px;
+        --background: #F5EAEA;
+        margin-top: 10px;
+        margin-left: 195px;
+    }
+}
+
+.listComments{
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+
+    h4{
+        color: #707070;
+    }
+    
+    img{
+       margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        padding: 0;
+    }
+}
+
+.relatedArticles{
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+    h4{
+        color: #707070;
+    }
+    p{
+        color:#707070;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+}
+
+.relatedTags{
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+    padding-bottom: 40px;
+    h4{
+        margin-bottom: 0;
+        color: #707070;
+        padding: 0;
+    }
+    p{
+        text-align: center;
+        width: 45%;
+        color:#707070;
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    .perTag{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    
 }

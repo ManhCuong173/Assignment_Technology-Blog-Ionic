@@ -6,10 +6,9 @@ ion-content{
     position: relative;
 }
 .content{
-    height: 533.5px;
-    width: 375px;
-    background-color: rgb(94, 15, 90);
-    position: absolute;
+    height: 20%;
+    width: 100%;
+    background-color: #5e0f5a;
 }
 // 3 thanh ke ngang>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #hr1{
@@ -39,23 +38,27 @@ ion-content{
 .logoJS{
     position: absolute;
     z-index: 2;
-    height: 15%;
-    width: 50%;
-    left: 170px;
-    top: 30px;
+    height: 50px;
+    width: 68px;
+    right: 1rem;
+    top: 3rem;
     transform: rotate(15deg);
 }
 // Profile>>>>>>
 .profile{
     position: absolute;
     z-index: 1;
-    width: 213px;
-    height: 350px;
-    background-color: white;
-    top: 135px;
-    left: 45px;
-    border-radius: 10%;
+    background-color: #5e0f5a;
     border: none;
+    text-align: center;
+    margin: auto;
+
+    .profile__inner {
+        width: 80%;
+        margin: auto;
+        background: #FFFF;
+        border-radius: 20px;
+    }
 }
 .profile p,h4,h5{
     text-align: center;
@@ -68,14 +71,14 @@ ion-content{
 }
 
 .imageuser{
-    padding: 10px;
-    padding-top: 10px;
+    text-align: center;
+    font-family: "Kozuka Mincho Pro";
+    padding: 5px;
 }
 .imageuser img{
-
-    height: 30%;
-    width: 30%;
-    margin-left: 70px;
+    background: #FFFF;
+    height: 80px;
+    width: 80px;
     border-radius: 50%;
     background-color: rgb(94, 15, 90);
 }
@@ -87,16 +90,30 @@ ion-content{
 //     height: 40%;
 // }
 #textprofile{
-    width: 185px;
-    height: 150px;
+    width: 90%;
     box-shadow: 0px 3px 6px 0px #A8A8A8;
-    margin-left: 14px;
     border-radius: 7%;
-}
+    margin: auto;
+    font-family: "Kozuka Mincho Pro";
+    font-size: 12px;
 
-.icon{
-    position: absolute;
-    z-index: 2;
-    top: 428px;
-    left: 140px;
+    /* detail information modification */
+    .detailsInfo {
+        ion-input {
+            border: 1px solid lightgrey;
+            border-radius: 10px;
+            width: 80%;
+            margin: .9rem auto;
+
+        }
+    }
+
+    input#imaage {
+        margin: .9rem 0;
+    }
+
+    #image {
+        padding: .9rem 0;
+        width: 90%;
+    }
 }

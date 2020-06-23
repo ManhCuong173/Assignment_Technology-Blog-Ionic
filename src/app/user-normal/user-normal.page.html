@@ -3,33 +3,55 @@
 </ion-header>
 
 <ion-content>
-  <div class="content">
-    <div id="menu">
-      <div id="hr1"></div>
-      <div id="hr2"></div>
-      <div id="hr3"></div>
+    <div class="content">
+        <div id="menu">
+            <div id="hr1"></div>
+            <div id="hr2"></div>
+            <div id="hr3"></div>
+        </div>
     </div>
-  </div>
-  <div>
-    <img class="logoJS" src="../assets/Image/logo_js_2.png">
-  </div>
+    <div>
+        <img class="logoJS" src="../assets/Image/logo_js_2.png">
+    </div>
 
-  <div class="profile">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12">
-          <h4>Profile</h4>
-          <div class="imageuser">
-            <img  src="../assets/Image/author.png">
-          </div>
-          <h5>Robert</h5>
-          <p>Detail</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <div id="textprofile">
-      <p>this is profile text</p>
+    <div class="profile">
+        <div class="profile__inner">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12">
+                        <h4>Profile</h4>
+                        <div class="imageuser">
+                            <img src={{avatarDownloadURL}} *ngIf="avatarDownloadURL">
+                        </div>
+                        <h5 *ngIf="user">{{user.username}}</h5>
+                        <p>Detail</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div id="textprofile" *ngIf="user">
+                <p style="font-size: 20px;">
+                    <ion-icon class="icon" name="create-outline"></ion-icon>
+                </p>
+                <ion-label for="image">Change avatar</ion-label>
+                <input type="file" id="image" (change)="handleChangeFile($event.target.files)" />
+                <div class="detailsInfo">
+                    <form novalidate #f="ngForm" (ngSubmit)="submitForm(f)">
+                        <label for="username">Username</label>
+                        <ion-input type="text" name="username" value="user.username" [ngModel]="user.username"></ion-input>
+                        <label for="email">Email</label>
+                        <ion-input type="text" name="email" value="user.email" [ngModel]="user.email"></ion-input>
+                        <div>
+                            <a (click)="changePassword()">Access email to reset password</a>
+                        </div>
+
+                        <label for="intro">Some about your self</label>
+                        <textarea name="briefIntro" value="user.briefIntro" [ngModel]="user.briefIntro" style="width: 90%;"></textarea>
+                        <ion-button type="submit" style="padding: .5rem 0" color="dark">Change</ion-button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-  <ion-icon class="icon" name="create-outline"></ion-icon>
 </ion-content>

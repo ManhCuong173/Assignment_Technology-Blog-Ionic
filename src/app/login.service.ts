@@ -21,39 +21,38 @@ export class LoginService
   {
     let promiseInstance = new Promise((resolve, reject) =>
     {
-      // firebase.initializeApp(environment.firebaseConfig);
-      // firebase.auth().onAuthStateChanged(userFirebase =>
-      // {
-      //   // user is current login
-      //   if (userFirebase) {
-      //     if (!userFirebase.emailVerified) {
-      //       alertify.warning('Bạn cần xác thực thông tin email của tài khoản này!');
-      //       firebase.auth().currentUser.sendEmailVerification();
-      //     }
-      //     this.setLogginState()
-      //     firebase.firestore().collection('User').where('email', '==', userFirebase.email).get().then(
-      //       snapshot =>
-      //       {
-      //         if (snapshot !== null) {
-      //           snapshot.forEach(user =>
-      //           {
-      //             this.user = user.data();
-      //             this.user = Object.assign(this.user, { __id: user.id })
-      //             resolve();
-      //           });
-      //         } else {
-      //           userFirebase.delete();
-      //           resolve();
-      //         }
-      //       }
-      //     )
-      //   }
-      //   else {
-      //     this.setLoggoutState();
-      //     this.user = this.defaultUser;
-      //     resolve();
-      //   }
-      // })
+      firebase.initializeApp(environment.firebaseConfig);
+      firebase.auth().onAuthStateChanged(userFirebase =>
+      {
+        // user is current login
+        if (userFirebase) {
+          if (!userFirebase.emailVerified) {
+            alertify.warning('Bạn cần xác thực thông tin email của tài khoản này!');
+            firebase.auth().currentUser.sendEmailVerification();
+          }
+          this.setLogginState()
+          firebase.firestore().collection('User').where('email', '==', userFirebase.email).get().then(
+            snapshot =>
+            {
+              if (snapshot !== null) {
+                snapshot.forEach(user =>
+                {
+                  this.user = user.data();
+                  this.user = Object.assign(this.user, { __id: user.id });
+                  resolve();
+                });
+              } else {
+                resolve();
+              }
+            }
+          )
+        }
+        else {
+          this.setLoggoutState();
+          this.user = this.defaultUser;
+          resolve();
+        }
+      })
       resolve();
     })
     return promiseInstance;

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AddNewArticlePageRoutingModule } from './add-new-article-routing.module';
 
 import { AddNewArticlePage } from './add-new-article.page';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddNewArticlePageRoutingModule
+    AddNewArticlePageRoutingModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
   ],
   declarations: [AddNewArticlePage]
 })
-export class AddNewArticlePageModule {}
+export class AddNewArticlePageModule { }

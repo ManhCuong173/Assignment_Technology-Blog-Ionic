@@ -3,115 +3,64 @@
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <div class="content">
-        <div class="header-content">
-          <img src="../assets/Image/author.png">
-          <p>Brian</p>
-        </div>
-        <div class="addArticle">
-          <h3>Add New Article</h3>
-          <p class="pMargin">Title</p>
-          <ion-item>
-            <ion-input ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Gender</ion-label>
-            <ion-select>
-              <ion-select-option value="f">Female</ion-select-option>
-              <ion-select-option value="m">Male</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <div class="generate">
-            <p>Generate Series:</p>
-            <ion-icon name="create-outline"></ion-icon>
-          </div>
-          <ion-input class="seriesName" placeholder="Series name"></ion-input>
-          <p class="pMargin">or Add new part of currently series:</p>
-          <ion-searchbar></ion-searchbar>
-          <p class="pMargin">Series of...</p>
-          <p class="pMargin">Content:</p>
-          <div class="textFile">This is text</div>
-          <div class="insertImage">insert image</div>
-          <div class="changeFont">
-            <p>B</p>
-            <p>I</p>
-            <p>U</p>
-            <p>Font-size....</p>
-            <p>Font-weight....</p>
-          </div>
-          <div class="addTag">
-            <p>Add Tags:</p>
-            <div class="inputIcons">
-              <ion-icon name="add-circle-outline"></ion-icon>
-              <ion-input></ion-input>
+    <div class="container">
+        <div class="content">
+            <div class="header-content">
+                <img src="../assets/Image/author.png">
+                <p>Brian</p>
             </div>
-          </div>
-          <div class="TSS">
-            <div class="tag">
-              <p>Tech</p>
+            <div class="addArticle">
+                <h3>Add New Article</h3>
+                <form #f="ngForm" (ngSubmit)="generateNewArticle(f)" novalidate>
+
+                    <p class="pMargin">Title</p>
+                    <ion-item>
+                        <ion-input placeholder="Text..." name="title" ngModel></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Type</ion-label>
+                        <ion-select name="cateID" value="FE">
+                            <ion-label>Type</ion-label>
+                            <ion-select-option *ngFor="let item of category" value={{item.id}}>{{item.name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div class="generate">
+                        <p>Generate Series:</p>
+                        <ion-icon name="create-outline"></ion-icon>
+                    </div>
+                    <ion-searchbar placeholder="Search here" showCancelButton="always" (ionChange)="searchSeriesArticle($event)" cancelButtonText="Custom Cancel" animated debounce="500"></ion-searchbar>
+                    <p class="pMargin">Series of...</p>
+                    <ul>
+                        <li *ngFor="let item of searchResult" style="list-style: none;" class="listSeries" (click)="addSeriesPart(item.postParentID, item.title)">
+                            {{item.title}}
+                        </li>
+                    </ul>
+                    <p class="pMargin">Content:</p>
+                    <div class="textFile">
+                        <div [froalaEditor]='options' [(froalaModel)]="editorContent" id="froalaEditor">Hello, Froala!</div>
+
+                    </div>
+                    <div class="addTag">
+                        <p>Add Tags:</p>
+                        <div class="inputIcons">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <ion-input placeholder="Add tag..." name="tags" ngModel (keypress)="addTags($event)"></ion-input>
+                        </div>
+                    </div>
+                    <div class="TSS">
+                        <div class="tag" *ngIf="!tags.length">
+                            <p>No tags</p>
+                        </div>
+                        <div class="tag" *ngIf="tags.length">
+                            <p *ngFor="let item of tags">{{item}}</p>
+                        </div>
+                    </div>
+                    <div class="footer-Article">
+                        <a (click)="preview()">Preview</a>
+                        <ion-button type="submit">Add New Article</ion-button>
+                    </div>
+                </form>
             </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-            <div class="tag">
-              <p>Tech</p>
-            </div>
-          </div>
-        </div>
-        <div class="footer-Article">
-          <a>Preview</a>
-          <ion-button>Add New Article</ion-button>
         </div>
     </div>
-  </div>
 </ion-content>
-

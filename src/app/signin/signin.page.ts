@@ -45,28 +45,25 @@ export class SigninPage implements OnInit
     userCollection.where('email', '==', email).get().then(snapshot =>
     {
       if (snapshot.empty) {
-        alertify.error('Tài khoản này không tồn tại');
-        // firebase.auth().signInWithEmailAndPassword(email, password).then(snapshot =>
-        // {
-        //   if (firebase.auth().currentUser) console.log('Có');
-
-        // })
-        return;
-      }
-
-      snapshot.forEach(user =>
-      {
-        let { isVerified } = user.data();
-        let { id } = user;
-        if (!isVerified) userCollection.doc(id).update({ isVerified: true })
         firebase.auth().signInWithEmailAndPassword(email, password).then(() =>
         {
-          this.__loginService.setLogginState();
-          this.__loginService.setUser(user.data(), user.id);
-          this.__router.navigate(['list-article']);
+          this.__router.navigate(['notfound']);
         }).catch(err => { alertify.error(err.message) });
-        return;
-      })
+      } else {
+        snapshot.forEach(user =>
+        {
+          let { isVerified } = user.data();
+          let { id } = user;
+          if (!isVerified) userCollection.doc(id).update({ isVerified: true })
+          firebase.auth().signInWithEmailAndPassword(email, password).then(() =>
+          {
+            this.__loginService.setLogginState();
+            this.__loginService.setUser(user.data(), user.id);
+            this.__router.navigate(['home-page']);
+          }).catch(err => { alertify.error(err.message) });
+          return;
+        })
+      }
     })
 
   }

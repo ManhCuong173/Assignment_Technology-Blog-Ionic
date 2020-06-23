@@ -31,8 +31,12 @@
         <ion-icon name="logo-facebook"></ion-icon>
         <ion-icon name="logo-google"></ion-icon>
         <ion-icon name="logo-tumblr"></ion-icon>
+        <ion-icon name="person-add-outline" [routerLink]="['/signup']"></ion-icon>
         <p>
-            <a (click)='resetPassword()' class="forgetPassword">Forget password?</a>
+            <a (click)='resetPassword()' class="forgetPassword">Forget</a>
         </p>
     </div>
+    <p style="position: fixed;bottom: 1rem;right: 1rem;">
+        <a [routerLink]="['/home-page']" style="color: #FFFF">Home page</a>
+    </p>
 </ion-content>
