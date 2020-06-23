@@ -50,38 +50,32 @@ ion-content{
 .circle1{
     margin-top: 30px;
     margin-left: 7px;
-    // position: absolute;
-    // z-index: 2;
+
     background-color: rgb(255, 255, 255);
     width:  30px;
     height: 30px;
     border-radius: 50%;
-    // top: 125px;
-    // left: 5px;
+
 }
 .circle2{
-    // position: absolute;
-    // z-index: 2;
+
     margin-top: 15px;
     margin-left: 7px;
     background-color: rgb(255, 255, 255);
     width:  30px;
     height: 30px;
     border-radius: 50%;
-    // top: 165px;
-    // left: 5px;
+
 }
 .circle3{
-    // position: absolute;
-    // z-index: 2;
+
     margin-top: 15px;
     margin-left: 7px;
     background-color: rgb(243, 243, 243);
     width:  30px;
     height: 30px;
     border-radius: 50%;
-    // top: 205px;
-    // left: 5px;
+
 }
 // /////////
 
@@ -116,7 +110,9 @@ ion-content{
 .infouser {
     margin-top: 115px;
     margin-left: 70px;
-    
+}
+.infouser img{
+
 
     img{
         height: 50px;
@@ -388,4 +384,43 @@ ion-content{
         }
     }
 
+=======
+    font-family: "Kozuka Mincho Pro";
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 575px;
+    p{
+        text-align: center;
+
+    }
+    ion-input{
+        &.custom-class {
+            text-align: center;
+            font-size: 14px;
+            font-family: "Kozuka Mincho Pro";
+        }
+    }
+    ion-select{
+        font-size: 12px;
+    }
+    ion-label{
+        font-size: 14px;
+    }
+    .gender{
+        border-style: none;
+        margin-left: 15px;
+        input{
+            margin-left: 10px;
+        }
+        label{
+            margin-left: 5px;
+        }
+    }
+    ion-button{
+        --background: #48345A;
+        margin-top: 15px;
+        margin-left: 65px;
+        width: 35%;
+        height: 30px;
+    }
 }
