@@ -145,6 +145,7 @@ export class AdminPage implements OnInit
   async changeRole(event, userID)
   {
     let roleID = event.target.value;
+    console.log(roleID)
     let roleResult = '';
     this.roleCate.forEach(role =>
     {
@@ -160,6 +161,18 @@ export class AdminPage implements OnInit
     let response = await this.__adminService.changeRole(roleID, roleResult, userID);
 
     alertify.success(response)
+  }
+
+  // add new article
+  async addArticle()
+  {
+    try {
+      let response = await this.__adminService.addArticle()
+      alertify.success(response);
+      this.__router.navigate(['add-new-article']);
+    } catch (error) {
+      alertify.error(error)
+    }
   }
 
   // add new user by admin

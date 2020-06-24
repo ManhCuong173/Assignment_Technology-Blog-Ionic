@@ -19,7 +19,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label>Type</ion-label>
-                        <ion-select name="cateID" value="FE">
+                        <ion-select name="cateID" value="FE" ngModel>
                             <ion-label>Type</ion-label>
                             <ion-select-option *ngFor="let item of category" value={{item.id}}>{{item.name}}</ion-select-option>
                         </ion-select>

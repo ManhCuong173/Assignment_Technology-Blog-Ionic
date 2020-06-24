@@ -200,7 +200,7 @@ export class AddNewArticlePage implements OnInit
             createdAt: new Date().getTime(),
           })
         });
-        this.__router.navigate(['/list'])
+        this.__router.navigate(['/admin'])
       })
     })
   }

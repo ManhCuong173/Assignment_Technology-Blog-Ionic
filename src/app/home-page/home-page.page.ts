@@ -36,6 +36,10 @@ export class HomePagePage implements OnInit
 
   // list article
   allArticles: any;
+
+  // sub category on tech
+
+
   // all newly article limit by 5
   newPostsOnTech: Array<any> = [];
   newPostsOnBook: Array<any> = [];
@@ -258,7 +262,8 @@ export class HomePagePage implements OnInit
   }
   navigateSpecificArticle(postID)
   {
-    this.__router.navigate(['/list-article', postID])
+    if (postID == 'randomOnTech')
+      this.__router.navigate(['/list-article', postID])
   }
   openMenu()
   {
