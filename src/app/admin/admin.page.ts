@@ -263,23 +263,23 @@ export class AdminPage implements OnInit
         return;
       }
 
-      firebase.auth().createUserWithEmailAndPassword(email, password).then(() =>
+      firebase.firestore().collection('User').add({
+        username: username,
+        roleID: '',
+        role: 'NU',
+        gender: gender,
+        email: email,
+        avatar: '',
+        briefIntro: '',
+        isVerified: false,
+      }).then(() =>
       {
-        firebase.firestore().collection('User').add({
-          username: username,
-          roleID: '',
-          role: 'NU',
-          gender: gender,
-          email: email,
-          avatar: '',
-          briefIntro: '',
-          isVerified: false,
-        }).then(() =>
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(async () =>
         {
-          this.sendVerifyEmail();
+          await this.sendVerifyEmail();
           alertify.success('Tạo mới một người dùng thành công');
-        }).catch(err => alertify.error(err.message));
-      }).catch(err => { alertify.error(err.message) });
+        }).catch(err => { alertify.error(err.message) });
+      }).catch(err => alertify.error(err.message));
     }
 
   }
