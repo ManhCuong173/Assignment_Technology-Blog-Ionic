@@ -26,21 +26,23 @@ export class SignupPage implements OnInit
   signUp(formValues)
   {
     let { email, password, gender } = formValues;
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() =>
+    firebase.firestore().collection('User').add({
+      username: '',
+      roleID: '',
+      role: 'NU',
+      gender: gender,
+      email: email,
+      avatar: '',
+      briefIntro: '',
+      isVerified: false,
+    }).then(() =>
     {
-      this.sendVerifyEmail();
-      firebase.firestore().collection('User').add({
-        username: '',
-        roleID: '',
-        role: 'NU',
-        gender: gender,
-        email: email,
-        avatar: '',
-        briefIntro: '',
-        isVerified: false,
-      }).then(() => { this.__router.navigate(['/signin']) })
-    }).catch(err => alertify.error(err.message));
-
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(async () =>
+      {
+        await this.sendVerifyEmail();
+        this.__router.navigate(['/signin'])
+      }).catch(err => alertify.error(err.message));
+    })
   }
 
   sendVerifyEmail()
