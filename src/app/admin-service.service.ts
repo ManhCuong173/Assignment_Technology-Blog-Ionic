@@ -28,12 +28,45 @@ export class AdminServiceService
         images: [],
         tags: [],
         voted: 0,
+        numberComment: 0,
         createdDate: new Date().getTime(),
         updatedDate: ''
       }).then(snapshot =>
       {
         resolve('Khởi tạo thành công');
       }).catch(err => reject(err));
+    })
+  }
+
+  deleteArticle(articleID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      // xoá article ở collection Article
+      firebase.firestore().collection('Article').doc(articleID).delete().then(async () =>
+      {
+        //xoá thông báo ở collection Notification
+        await this.deleteOldArticleInNotif(articleID);
+        resolve();
+      })
+    })
+  }
+
+  deleteOldArticleInNotif(articleID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Notification').where('postID', '==', articleID).get().then(snapshot =>
+      {
+        let notificationArr = snapshot.docs;
+        if (notificationArr.length) {
+          notificationArr.forEach(notif =>
+          {
+            firebase.firestore().collection('Notification').doc(notif.id).delete();
+          });
+          resolve()
+        };
+      })
     })
   }
 

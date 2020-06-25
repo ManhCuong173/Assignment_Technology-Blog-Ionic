@@ -4,8 +4,7 @@
 
 <div class="header">
     <div class="topLeft">
-        <img src="{{userAvatarURL}}" *ngIf="isAnonymous == false">
-        <ion-icon class="icon" name="create-outline" [routerLink]="['/user-normal',user.__id]"></ion-icon>
+        <img src="{{userAvatarURL}}" *ngIf="isAnonymous == false" [routerLink]="['/user-normal',user.__id]">
     </div>
     <div class="nameUser" *ngIf="user">
         {{user.email}}
@@ -20,28 +19,70 @@
 
 
 <ion-content>
+    <div class="top__menu" *ngIf="isMenuShown">
+        <div *ngFor="let item of listCategory">
+            <div [routerLink]="['/list-article',item.id]" class="listArticleByCate">
+                <span>{{item.name}}</span>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="menu">
-            <div class="hr1"></div>
-            <div class="hr2"></div>
-            <div class="hr3"></div>
+            <div class="menu">
+                <div (click)="openMenu()" class="menuButton">
+                </div>
+            </div>
         </div>
         <div class="threeRound">
             <img src="../../assets//Image/author-sub-icon.png" style="margin-left: 1rem;" *ngIf="isAdmin" [routerLink]="['/admin']">
-            <img src="../../assets/Image/icon1.PNG" style="margin-left: 1rem;">
-            <img src="../../assets/Image/icon2.PNG" style="margin-left: 1rem;">
             <img src="../../assets/Image/icon3.PNG" style="margin-left: 1rem;" (click)="logOut()">
         </div>
         <div class="contentOne" style="position: relative;">
+            <p class="featureArticleTitle">Bài viết đáng xem</p>
+            <div class="notification__outer">
+                <div>
+                    <span (click)="displayNotification()">
+                        <strong class="notiNumber" *ngIf="notReadNumber > 0">{{notReadNumber}}</strong>
+                        <img src="../../assets/Image/global.png" style="width: 30px; height: 30px;"  class="notification" />
+                        <!-- <strong class="notiNumber" *ngIf="notReadNumber > 0">1</strong> -->
+                    </span>
+                    <div class="notification__wrapper" *ngIf="isShown == true" style=" min-width: 5rem;
+                            min-width: 5rem;
+                            position: absolute;
+                            top: 0;
+                            right: 3rem;
+                            z-index: 100;
+                            background: #d2e6f3;
+                            min-height: 5rem;
+                            border-radius: 5px;
+                            padding: 1rem;                  
+                        ">
+                        <p *ngIf="listNotification == undefined" class="notification__inner">Không có tin gì mới</p>
+                        <p *ngFor="let item of listNotification" class="notification__inner">
+                            <a (click)="navigateSpecificArticleNotif(item.postID,item.id)" [ngStyle]="{color:item.color}" *ngIf="user.__id !== '
+                            T4pcAAT4MPLPg3HuyK7x'">
+                                New article: {{item.content}}
+                            </a>
+                            <a (click)="navigateSpecificArticleNotif(item.postID,item.id)" [ngStyle]="{color:item.color}" *ngIf="user.__id == '
+                            T4pcAAT4MPLPg3HuyK7x'">
+                                New article: {{item.content}}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="subscriber">
+                    <img src="../../assets/Image/notyet_subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == false && user.__id !== 'T4pcAAT4MPLPg3HuyK7x'" (click)="subscribe()" />
+                    <img src="../../assets/Image/subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == true && user.__id !== 'T4pcAAT4MPLPg3HuyK7x'" />
+                </div>
+            </div>
             <div class="imgAuthor">
-                <img src="../../assets/Image/author.png">
+                <img src="{{userAvatarURL}}" *ngIf="mostVotedArticle">
+                <p class="nameOfFeatureArticle"><span [routerLink]="['/article', mostVotedArticle.id]" *ngIf="mostVotedArticle">{{ mostVotedArticle.title}}</span></p>
             </div>
             <div class="imgJS">
                 <div>
-                    <img _ngcontent-goo-c144="" src="../../assets/Image/js.PNG" style="width:261px;height:200px">
+                    <img _ngcontent-goo-c144="" src={{mostVotedArticle.imageURL}} style="width:261px;height:200px" *ngIf="mostVotedArticle">
                 </div>
-
-
             </div>
         </div>
 
@@ -83,7 +124,7 @@
 
             </div>
             <div class="forMore">
-                <a (click)="navigateSpecificArticle('8DONo4cPmZzQ71qi4mQR')">For more ...</a>
+                <a (click)="navigateSpecificArticle('randomOnTech')">For more ...</a>
             </div>
         </div>
 
@@ -94,12 +135,32 @@
         <div style="background-color:#F6F2F1;">
             <div class="contentThree">
                 <div class="contentThreeRight" *ngFor="let item of newPostsOnBook">
-                    <div class="logo" style="margin-left: 7rem;">
+                    <img src={{item.imageURLShow}} *ngIf="item.images.length" style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    border-top-left-radius: 34px;
+                    border-bottom-left-radius: 20px;
+                    z-index: 1;
+                    object-fit: contain;" />
+                    <div class="logo" style="position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 2rem;
+                ">
                         <img src="../../assets/Image/voteicon.jpg" style="width:1.5rem;">
                         <img src="../../assets/Image/commenticon.jpg" style="width:2rem;">
                     </div>
-                    <p>{{item.title}}</p>
-                    <a href="javascript:void(0)" style="margin-left:6.5rem;" (click)="navigateSpecificArticle(item.id)">Read more...</a>
+                    <div style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: 2;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                    flex-direction: column;">
+                        <p>{{item.title}}</p>
+                        <a href="javascript:void(0)" style="margin-left:6.5rem;" [routerLink]="['/article',item.id]">Read more...</a>
+                    </div>
                 </div>
             </div>
             <div class="forMore">
@@ -115,52 +176,46 @@
         <div style="background-color: #F6F2F1;">
             <div class="contentTwo">
                 <div class="contentTwoRight" *ngFor="let item of newPostsOnStory ">
-                    <div class="logo" style="margin-left: 7rem;">
+                    <img src={{item.imageURLShow}} *ngIf="item.images.length" style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    border-top-left-radius: 34px;
+                    border-bottom-left-radius: 20px;
+                    z-index: 1;
+                    object-fit: contain;" />
+                    <div class="logo" style="position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 2rem;
+                ">
                         <img src="../../assets/Image/voteicon.jpg" style="width:1.5rem;">
                         <img src="../../assets/Image/commenticon.jpg" style="width:2rem;">
                     </div>
-                    <p>{{item.title}}</p>
-                    <a href="javascript:void(0)" style="margin-left:6.5rem;" (click)="navigateSpecificArticle(item.id)">Read more...</a>
+                    <div style="width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    z-index: 2;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+                    flex-direction: column;">
+                        <p>{{item.title}}</p>
+                        <a href="javascript:void(0)" style="margin-left:6.5rem;" [routerLink]="['/article',item.id]">Read more...</a>
+                    </div>
                 </div>
 
             </div>
             <div class="forMore">
-                <a (click)="navigateSpecificArticle('
-                aXha1x9DA2IPWBXiHNxT
-                ')">For more ...</a>
+                <a (click)="navigateSpecificArticle('aXha1x9DA2IPWBXiHNxT')">For more ...</a>
             </div>
         </div>
 
-        <div class="footer">
-            <p>Most popular tags</p>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="6">
-                        Technology
-                    </ion-col>
-                    <ion-col size="6">
-                        Technology
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="12">
-                        Technology
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="6">
-                        Technology
-                    </ion-col>
-                    <ion-col size="6">
-                        Technology
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="12">
-                        Technology
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+        <div class="footer" style="text-align: center;">
+            <p>Random một bài viết bất kỳ</p>
+            <toolbar></toolbar>
+            <div (click)="randomArticle()">
+                <img src="../../assets/Image/random.png" style="width: 100px; height: 100px; border-radius: 50%" alt="Click me now" />
+            </div>
         </div>
     </div>
 </ion-content>

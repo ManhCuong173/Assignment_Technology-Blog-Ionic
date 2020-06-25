@@ -98,10 +98,57 @@ export class PostsService
         });
 
         results = this.shuffleArrayItem(results);
-        console.log(results)
         if (results.length > 4) results.splice(3, 4);
         resolve(results)
       }).catch(err => { throw new Error(err) })
     })
+  }
+
+  getMostVotedArticle()
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Article').orderBy('voted', 'desc').limit(1).get().then(snapshot =>
+      {
+        let result = Object.assign(snapshot.docs[0].data(), { id: snapshot.docs[0].id });
+        resolve(result);
+      })
+    })
+  }
+
+  getParentArticles(postParentID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Article').where('postParentID', '==', postParentID).get().then(snapshot =>
+      {
+        let result: any = snapshot.docs.map(article => Object.assign(article.data(), { id: article.id }));
+        resolve(result);
+      })
+    })
+  }
+
+  voteArticle(articleID, userID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Voted').add({
+        articleID: articleID,
+        userID: userID
+      }).then(() => resolve())
+    })
+  }
+
+  detectUserDoVote(userID, articleID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Voted').where('articleID', '==', articleID).where('userID', '==', userID).get().then(snapshot =>
+      {
+        if (snapshot.docs.length > 0) resolve(true);
+        resolve(false);
+      })
+    })
+
   }
 }

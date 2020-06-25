@@ -1,16 +1,17 @@
 <ion-header>
     <div class="header">
         <div class="topLeft">
-            <div class="imageuser">
-                <img class="img" src="">
+            <div class="imageuser" [routerLink]="['/home-page']">
+                <img src="../../assets/Image/sydney-opera-house.png" style=" width: 1rem;
+                height: 1rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);" />
             </div>
         </div>
         <div class="topRight ">
             <div class="icon ">
-                <p class="flex-item ">Robert </p>
-                <ion-input class="flex-item "></ion-input>
-                <ion-icon class="flex-item " name="search-outline "></ion-icon>
-                <ion-icon class="flex-item " name="menu-outline "></ion-icon>
             </div>
         </div>
     </div>
@@ -39,7 +40,13 @@
                     <p *ngIf="listComments">{{listComments.length}} Comment</p>
                 </div>
                 <div class="tag ">
-                    <a>Tag: <i *ngIf="article"><span *ngFor="let tag of article.tags">{{tag}},</span></i></a>
+                    <a>Tag: <i *ngIf="article"><span *ngFor="let tag of article.tags" [routerLink]="['/list-article-by-tag',tag]">{{tag}},</span></i></a>
+                </div>
+                <div class="relatedArticles ">
+                    <h4>Bài viết nằm trong chuỗi series:</h4>
+                    <div *ngIf="parentArticles">
+                        <p *ngFor="let item of  parentArticles"><a [routerLink]="['/article',item.id]">{{item.title}}</a></p>
+                    </div>
                 </div>
                 <div class="comment ">
                     <form #comment="ngForm" (ngSubmit)="addComment(comment)">
@@ -48,7 +55,7 @@
                     </form>
                 </div>
                 <div class="listComments ">
-                    <h4>Comments</h4>
+                    <h4>Bình luận</h4>
                     <div class="comments" *ngIf="listComments">
                         <ion-row *ngFor="let comment of listComments">
                             <ion-col size=4>
@@ -60,7 +67,7 @@
                     </div>
                 </div>
                 <div class="relatedArticles ">
-                    <h4>Related Articles</h4>
+                    <h4>Bài viết liên quan</h4>
                     <div *ngIf="listRelatedArticles">
                         <p *ngFor="let item of listRelatedArticles"><a [routerLink]="['/article',item.id]">{{item.title}}</a></p>
                     </div>

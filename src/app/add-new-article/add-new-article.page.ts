@@ -176,6 +176,11 @@ export class AddNewArticlePage implements OnInit
 
   generateNewArticle(f: NgForm)
   {
+    if (f.value.cateID == '') {
+      alertify.error('Bạn phải chọn kiểu bài viết');
+      return;
+    }
+
     Object.assign(f.value, { content: this.editorContent });
     f.value.tags = this.tags;
     firebase.firestore().collection('Article').doc(this.currentArticleId).update(
@@ -188,6 +193,7 @@ export class AddNewArticlePage implements OnInit
       {
         let followerResult: any;
         followerResult = snapshot.docs[0].data().followers;
+        // notification for followers
         followerResult.forEach(element =>
         {
           firebase.firestore().collection('Notification').add({
@@ -200,7 +206,17 @@ export class AddNewArticlePage implements OnInit
             createdAt: new Date().getTime(),
           })
         });
-        this.__router.navigate(['/admin'])
+
+        // notification for admin
+        firebase.firestore().collection('Notification').add({
+          content: f.value.title,
+          type: 'NP',
+          to: snapshot.docs[0].data().userID,
+          isReaded: false,
+          postID: this.currentArticleId,
+          color: '#84a9ac',
+          createdAt: new Date().getTime(),
+        })
       })
     })
   }
@@ -230,7 +246,6 @@ export class AddNewArticlePage implements OnInit
   //searching article stories
   searchSeriesArticle(event)
   {
-    console.log(event.target.value)
     this.searchResult = [];
     let inputValue = event.target.value;
     this.seriesArray.forEach(element =>

@@ -258,11 +258,8 @@ ion-content{
 // Danh sách các bài viết được Top
 .listTop{
     margin-top: 20px;
-    
-    .mostInteractive {
-        overflow-y: auto;
-        height: 300px;
-    }
+    overflow-y: auto;
+    height: 300px;
     
     .newestArticles {
         background: #545985;
@@ -271,7 +268,13 @@ ion-content{
         color: #FFFF;
     max-width: 90%;
     margin: 10px auto;
-}
+    }
+    .listUser {
+        width: 90%;
+        border: solid 0.5px gray;
+        margin-left: 10px;
+        border-radius: 10px;
+    }
 }
 
 .listTop ion-grid{

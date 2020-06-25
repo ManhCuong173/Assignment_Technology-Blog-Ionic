@@ -34,8 +34,10 @@ a{  margin: 0;
     height: 40px;
     margin-top: 40px;
     border-radius: 50%;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     margin-left: 10px;
+    text-align: center;
+    position: relative;
  }
 // ten + icon 
 .topRight{
@@ -171,8 +173,11 @@ clear: both;
 
 .relatedArticles{
     width: 90%;
-    margin-left: 5%;
     height: auto;
+    background: #fff1ed4d;
+    padding: 20px;
+    box-shadow: 4px 6px 8px 0px lightgrey;
+    margin: 10px 5%;
     h4{
         color: #707070;
     }

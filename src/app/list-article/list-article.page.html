@@ -1,11 +1,18 @@
 <ion-header>
     <div class="header">
-        <div class="menu">
-            <div (click)="openMenu()" class="menuButton">
+        <div class="topLeft" style="margin-bottom: 10px;">
+            <div class="imageuser" [routerLink]="['/home-page']">
+                <img src="../../assets/Image/sydney-opera-house.png" style=" width: 1rem;
+                height: 1rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);" />
             </div>
         </div>
-        <div class="tech">
-            <ion-input placeholder="TECH"></ion-input>
+        <div class="topRight ">
+            <div class="icon ">
+            </div>
         </div>
     </div>
 </ion-header>
@@ -28,7 +35,6 @@
         <div class="content">
             <div class="article-title">
                 <div class="article">
-                    <h4 class="flex-item">Công nghệ: </h4>
                     <div *ngFor="let item of exampleArrToDisplay ">
                         <div class="flex-item textFile">
                             <strong class="titleArticle">{{item.title}}</strong>
@@ -39,8 +45,7 @@
                             <img src={{item.imageURLShow}} *ngIf="item.images.length " style=" width: 50%; height: 80%; position: absolute; z-index: 1; object-fit: contain; top: 10px; right: 0; " />
                         </div>
                         <div class="flex-item bottomLine ">
-                            <p>15 vote, 50 comments</p>
-
+                            <p style="color: #FFFF">{{item.voted}} vote, {{item.numberComment}} comments</p>
                         </div>
                     </div>
 

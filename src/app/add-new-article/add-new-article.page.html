@@ -19,7 +19,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label>Type</ion-label>
-                        <ion-select name="cateID" value="FE" ngModel>
+                        <ion-select name="cateID" [value]="category[0].id" ngModel *ngIf="category">
                             <ion-label>Type</ion-label>
                             <ion-select-option *ngFor="let item of category" value={{item.id}}>{{item.name}}</ion-select-option>
                         </ion-select>
@@ -60,6 +60,10 @@
                         <ion-button type="submit">Add New Article</ion-button>
                     </div>
                 </form>
+                <div style="position: fixed; bottom: .5rem; right: 1rem;z-index: 1000;">
+                    <img src="../../assets/Image/backtoadminpage.png" style="width: 30px;height: 30px" [routerLink]="['/admin']" />
+
+                </div>
             </div>
         </div>
     </div>
