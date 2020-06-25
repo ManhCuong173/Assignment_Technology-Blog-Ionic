@@ -60,23 +60,23 @@
                         <p *ngIf="listNotification == undefined" class="notification__inner">Không có tin gì mới</p>
                         <p *ngFor="let item of listNotification" class="notification__inner">
                             <a (click)="navigateSpecificArticleNotif(item.postID,item.id)" [ngStyle]="{color:item.color}" *ngIf="user.__id !== '
-                            T4pcAAT4MPLPg3HuyK7x'">
+                            vqRtwWgj9a00UvQfsbnF'">
                                 New article: {{item.content}}
                             </a>
                             <a (click)="navigateSpecificArticleNotif(item.postID,item.id)" [ngStyle]="{color:item.color}" *ngIf="user.__id == '
-                            T4pcAAT4MPLPg3HuyK7x'">
+                            vqRtwWgj9a00UvQfsbnF'">
                                 New article: {{item.content}}
                             </a>
                         </p>
                     </div>
                 </div>
                 <div class="subscriber">
-                    <img src="../../assets/Image/notyet_subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == false && user.__id !== 'T4pcAAT4MPLPg3HuyK7x'" (click)="subscribe()" />
-                    <img src="../../assets/Image/subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == true && user.__id !== 'T4pcAAT4MPLPg3HuyK7x'" />
+                    <img src="../../assets/Image/notyet_subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == false && user.__id !== 'vqRtwWgj9a00UvQfsbnF'" (click)="subscribe()" />
+                    <img src="../../assets/Image/subscribe_icon.png" style="width: 30px; height: 30px;" class="notification" *ngIf="isSubscribe == true && user.__id !== 'vqRtwWgj9a00UvQfsbnF'" />
                 </div>
             </div>
             <div class="imgAuthor">
-                <img src="{{userAvatarURL}}" *ngIf="mostVotedArticle">
+                <img src="{{adminAvatar}}" *ngIf="adminAvatar">
                 <p class="nameOfFeatureArticle"><span [routerLink]="['/article', mostVotedArticle.id]" *ngIf="mostVotedArticle">{{ mostVotedArticle.title}}</span></p>
             </div>
             <div class="imgJS">

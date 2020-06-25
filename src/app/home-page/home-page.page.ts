@@ -28,6 +28,9 @@ export class HomePagePage implements OnInit
   imageData: File = null;
   latesImageChange: String = '';
 
+  // admin avatar URL
+  adminAvatar: any;
+
   // anonymous 
   isAnonymous: boolean = false;
 
@@ -77,17 +80,17 @@ export class HomePagePage implements OnInit
       });
     }
     this.__socket.connect();
-    this.__socket.fromEvent('res-send-notification').subscribe(data =>
-    {
-      let adminID = data['adminID'];
-      let label = data['label'];
-      let title = data['title'];
-      if (this.user.__id !== adminID) {
-        alertify.message(`${label} " ${title} "`)
-      } else if (this.user.__id == adminID) {
-        alertify.message(`Bạn vừa tạo bài viết mới: ${title}`)
-      }
-    })
+    // this.__socket.fromEvent('res-send-notification').subscribe(data =>
+    // {
+    //   let adminID = data['adminID'];
+    //   let label = data['label'];
+    //   let title = data['title'];
+    //   if (this.user.__id !== adminID) {
+    //     alertify.message(`${label} " ${title} "`)
+    //   } else if (this.user.__id == adminID) {
+    //     alertify.message(`Bạn vừa tạo bài viết mới: ${title}`)
+    //   }
+    // })
 
     // detect subscribe
     this.detectSubscribe();
@@ -105,6 +108,14 @@ export class HomePagePage implements OnInit
         if (noti.id == data) noti.color = '#393e46';
       });
     });
+
+    this.getAdminURL();
+  }
+
+  // get admin avatar url
+  async getAdminURL()
+  {
+    this.adminAvatar = await this.adminService.getAdminURL();
   }
 
   // random article
@@ -255,7 +266,7 @@ export class HomePagePage implements OnInit
     this.allArticles = await this.adminService.getAllArticle();
     this.filterArticleToEachArrayAndLimit();
     this.mostVotedArticle = await this.__postService.getMostVotedArticle();
-    Object.assign(this.mostVotedArticle, { imageURL: await this.__userService.getDowloadURL('admin/media/images', this.mostVotedArticle.images[0]) })
+    this.mostVotedArticle = Object.assign(this.mostVotedArticle, { imageURL: await this.__userService.getDowloadURL('admin/media/images', this.mostVotedArticle.images[0]) })
   }
 
 

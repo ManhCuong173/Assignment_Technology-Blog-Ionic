@@ -114,9 +114,8 @@ export class AdminPage implements OnInit
         prevValue = ++objA[currentKey];
         return { [currentKey]: prevValue }
       } else {
-        prevValue = 0;
         let currentKey = objB['month'];
-        prevValue = 0;
+        prevValue = 1;
         return { [currentKey]: prevValue }
       }
     }, {});
@@ -125,6 +124,7 @@ export class AdminPage implements OnInit
     for (let key in this.chartArrData) {
       result.push([key, this.chartArrData[key]])
     };
+    console.log(result);
     return result;
   }
   // initial data chart
@@ -133,11 +133,10 @@ export class AdminPage implements OnInit
     this.chartLabels = [];
     this.chartData[0].data = [];
     let dataArr = this.sortArticleDataChart();
-    console.log(dataArr)
     let colorBarArr = [];
     for (const object of dataArr) {
-      this.chartData[0].data.push(object[0])
-      this.chartLabels.push(object[1])
+      this.chartData[0].data.push(object[1])
+      this.chartLabels.push(`Tháng: ${object[0]}`)
       colorBarArr.push(this.__utilsService.randomColor());
     }
     this.chartColors[0].backgroundColor = colorBarArr;
@@ -159,7 +158,20 @@ export class AdminPage implements OnInit
   async deleteArticle(articleID)
   {
     await this.__adminService.deleteArticle(articleID);
+    this.removeArticleFromComponent(articleID, this.mostVotedArticles);
+    this.removeArticleFromComponent(articleID, this.newestArticles);
     alertify.success('Xoá thành công bài viết')
+  }
+
+  removeArticleFromComponent(articleID, articleArr)
+  {
+    let indexArr = -1;
+    articleArr.forEach((article, index) =>
+    {
+      if (article.id == articleID) indexArr = index;
+    });
+
+    return articleArr.splice(indexArr, 1);
   }
 
   searchArticle(event)

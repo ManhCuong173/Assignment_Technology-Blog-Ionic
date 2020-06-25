@@ -14,6 +14,21 @@ export class AdminServiceService
   {
   }
 
+  getAdminURL()
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('User').where('email', '==', 'daomanhcuong173@gmail.com').get().then(snapshot =>
+      {
+        let { avatar } = snapshot.docs[0].data();
+        let { id } = snapshot.docs[0];
+        firebase.storage().ref(`/user_${id}/avatars/`).child(avatar).getDownloadURL().then(url =>
+        {
+          resolve(url)
+        })
+      })
+    })
+  }
 
   addArticle()
   {

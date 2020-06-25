@@ -187,7 +187,7 @@ export class AddNewArticlePage implements OnInit
       f.value
     ).then(res =>
     {
-      this.__socket.emit('send-notification', { label: 'Một bài viết mới', title: f.value.title, adminID: 'T4pcAAT4MPLPg3HuyK7x', postID: this.currentArticleId })
+      // this.__socket.emit('send-notification', { label: 'Một bài viết mới', title: f.value.title, adminID: 'vqRtwWgj9a00UvQfsbnF', postID: this.currentArticleId })
       alertify.success('Khởi tạo bài viết thành công');
       firebase.firestore().collection('Admin').get().then(snapshot =>
       {

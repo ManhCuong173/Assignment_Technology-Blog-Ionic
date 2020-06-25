@@ -6,23 +6,23 @@ let port = process.env.PORT || 3000;
 
 io.on ('connection', socket => {
   socket.on ('disconnect', function () {
-    io.emit ('Disconnect');
+    soclet.emit ('Disconnect');
   });
 
   socket.on ('send-notification', function (data) {
-    io.emit ('res-send-notification', data);
+    socket.emit ('res-send-notification', data);
   });
 
   socket.on ('read-notification', function (data) {
-    io.emit ('response-read-notification', --data);
+    socket.emit ('response-read-notification', --data);
   });
 
   socket.on ('read-notification-change-color', function (data) {
-    io.emit ('res-read-notification-change-color', data);
+    socket.emit ('res-read-notification-change-color', data);
   });
 
   socket.on ('new-comment', function (data) {
-    io.emit ('res-new-comment', data);
+    socket.emit ('res-new-comment', data);
   });
 });
 
