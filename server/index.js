@@ -20,6 +20,10 @@ io.on ('connection', socket => {
   socket.on ('read-notification-change-color', function (data) {
     io.emit ('res-read-notification-change-color', data);
   });
+
+  socket.on ('new-comment', function (data) {
+    io.emit ('res-new-comment', data);
+  });
 });
 
 server.listen (port, function () {

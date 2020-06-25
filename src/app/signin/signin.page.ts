@@ -18,7 +18,6 @@ export class SigninPage implements OnInit
 
   constructor(private __loginService: LoginService, private __router: Router)
   {
-    console.log(firebase.auth().currentUser)
   }
   ngOnInit()
   {
@@ -57,9 +56,11 @@ export class SigninPage implements OnInit
           if (!isVerified) userCollection.doc(id).update({ isVerified: true })
           firebase.auth().signInWithEmailAndPassword(email, password).then(() =>
           {
+            let { email } = user.data();
             this.__loginService.setLogginState();
             this.__loginService.setUser(user.data(), user.id);
-            this.__router.navigate(['home-page']);
+            if (email == 'daomanhcuong173@gmail.com') this.__router.navigate(['admin']);
+            else this.__router.navigate(['home-page']);
           }).catch(err => { alertify.error(err.message) });
           return;
         })

@@ -11,6 +11,8 @@ export class UserService
   isShowAddAuthorRole: boolean = false;
   allUser: any = [];
   user: any;
+  adminID: string = 'P3HI83sJLpvbAYgA7TGc';
+
   constructor(private __loginService: LoginService)
   {
   }
@@ -57,6 +59,35 @@ export class UserService
       firebase.storage().ref(pathURL).child(childURL).getDownloadURL().then(url =>
       {
         resolve(url)
+      })
+    })
+  }
+
+  detectUserSubscribe(userID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Admin').doc(this.adminID).get().then(snapshot =>
+      {
+        let { followers } = snapshot.data();
+        if (followers.indexOf(userID) > -1) resolve(true);
+        else resolve(false);
+      })
+    })
+  };
+
+  subscribe(userID)
+  {
+    return new Promise((resolve, reject) =>
+    {
+      firebase.firestore().collection('Admin').doc(this.adminID).get().then(snapshot =>
+      {
+        let { followers } = snapshot.data();
+        followers.push(userID);
+        firebase.firestore().collection('Admin').doc(this.adminID).update({ followers: followers }).then(() =>
+        {
+          resolve()
+        })
       })
     })
   }

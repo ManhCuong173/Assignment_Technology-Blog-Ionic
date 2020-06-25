@@ -36,6 +36,7 @@ export class AdminPage implements OnInit
   mostVotedArticles: any;
   //newest articles
   newestArticles: any;
+  clonedNewestArticle
 
   // active user field or articles field is actived
   isArticleField: boolean = true;
@@ -49,7 +50,7 @@ export class AdminPage implements OnInit
   chartOptions = {
     title: {
       display: true,
-      text: 'Total Article Per Month'
+      text: 'Tồng bài viết tùng tháng'
     },
     // down chart by scroll
     pan: {
@@ -70,10 +71,11 @@ export class AdminPage implements OnInit
   ];
   chartType = 'bar';
   showLegend = false;
+
+  // data chart
+  chartArrData: any;
   constructor(private __loginService: LoginService, private __utilsService: UtilsService, private __adminService: AdminServiceService, private __userService: UserService, private __router: Router)
   {
-    // get chart data 
-    this.getDataChart();
 
     // get user infor
     this.user = this.__loginService.getUser();
@@ -88,21 +90,58 @@ export class AdminPage implements OnInit
   ngOnInit()
   {
   }
+  //sorting article data to put into chart
+  sortArticleDataChart()
+  {
+    let arrParse: any = [...this.allArticles];
+    if (arrParse.length == 0) return [{ 0: 0 }, { 0: 0 }, { 0: 0 }, { 0: 0 }, { 0: 0 }];
 
+    let arr = [];
+    arrParse.sort((a, b) =>
+    {
+      return a.createdDate - b.createdDate;
+    })
+    arrParse.forEach(article =>
+    {
+      let parseMonth = new Date(article.createdDate).getMonth();
+      arr.push({ month: parseMonth })
+    });
+    this.chartArrData = arr.reduce(function (objA, objB)
+    {
+      let prevValue = 0;
+      if (objB['month'] in objA) {
+        let currentKey = objB['month'];
+        prevValue = ++objA[currentKey];
+        return { [currentKey]: prevValue }
+      } else {
+        prevValue = 0;
+        let currentKey = objB['month'];
+        prevValue = 0;
+        return { [currentKey]: prevValue }
+      }
+    }, {});
+    console.log(this.chartArrData)
+    let result = [];
+    for (let key in this.chartArrData) {
+      result.push([key, this.chartArrData[key]])
+    };
+    return result;
+  }
+  // initial data chart
   getDataChart()
   {
     this.chartLabels = [];
     this.chartData[0].data = [];
-    let dataArr = [10, 20, 7, 35, 50];
+    let dataArr = this.sortArticleDataChart();
+    console.log(dataArr)
     let colorBarArr = [];
-    for (const item of dataArr) {
-      this.chartData[0].data.push(item)
-      this.chartLabels.push((+new Date().getMonth() + 1).toString())
+    for (const object of dataArr) {
+      this.chartData[0].data.push(object[0])
+      this.chartLabels.push(object[1])
       colorBarArr.push(this.__utilsService.randomColor());
     }
     this.chartColors[0].backgroundColor = colorBarArr;
   }
-
   // delete user
   async deleteUser(userID)
   {
@@ -117,11 +156,25 @@ export class AdminPage implements OnInit
     alertify.success(response)
   }
 
+  async deleteArticle(articleID)
+  {
+    await this.__adminService.deleteArticle(articleID);
+    alertify.success('Xoá thành công bài viết')
+  }
+
+  searchArticle(event)
+  {
+    let value = event.target.value;
+    this.newestArticles = this.clonedNewestArticle.filter(article => article.title.includes(value));
+  }
+
   async getAllArticles()
   {
     this.allArticles = await this.__adminService.getAllArticle();
     this.getMostVotedArticles(this.allArticles);
     this.newsetPost(this.allArticles);
+    this.sortArticleDataChart();
+    this.getDataChart();
   }
 
   async getAllUsers()
@@ -198,23 +251,23 @@ export class AdminPage implements OnInit
         return;
       }
 
-      firebase.firestore().collection('User').add({
-        username: username,
-        roleID: '',
-        role: 'NU',
-        gender: gender,
-        email: email,
-        avatar: '',
-        briefIntro: '',
-        isVerified: false,
-      }).then(() =>
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(() =>
       {
-        alertify.success('Tạo mới một người dùng thành công');
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(() =>
+        firebase.firestore().collection('User').add({
+          username: username,
+          roleID: '',
+          role: 'NU',
+          gender: gender,
+          email: email,
+          avatar: '',
+          briefIntro: '',
+          isVerified: false,
+        }).then(() =>
         {
           this.sendVerifyEmail();
-        })
-      }).catch(err => alertify.error(err.message));
+          alertify.success('Tạo mới một người dùng thành công');
+        }).catch(err => alertify.error(err.message));
+      }).catch(err => { alertify.error(err.message) });
     }
 
   }
@@ -227,7 +280,7 @@ export class AdminPage implements OnInit
   getMostVotedArticles(articles)
   {
     this.mostVotedArticles = [...articles];
-    this.mostVotedArticles.sort((nextArticle, prevArticle) =>
+    this.mostVotedArticles.sort((prevArticle, nextArticle) =>
     {
       if (nextArticle.voted > prevArticle.voted) return -1;
       else return 1;
@@ -237,6 +290,7 @@ export class AdminPage implements OnInit
   newsetPost(articles)
   {
     this.newestArticles = [...articles];
+    this.clonedNewestArticle = [...this.newestArticles];
     this.newestArticles.sort((nextArticle, prevArticle) =>
     {
       if (+nextArticle.createdDate > +prevArticle.createdDate) return -1;

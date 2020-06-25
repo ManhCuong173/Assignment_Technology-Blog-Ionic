@@ -8,6 +8,22 @@
 *::-webkit-scrollbar,::-webkit-scrollbar{
     display: none;
 }
+
+ion-header {
+    background: #48345aa6;
+
+    .imageuser{
+        width: 40px;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: 10px;
+    text-align: center;
+    position: relative;
+     }
+}
+
 .container{
     height: 100%;
     overflow: scroll;
@@ -46,16 +62,13 @@
 }
 
 .header{
-    height: 100px;
     width: 100%;
-    background-color: #48345A;
 }
 
 .menu{
     float: left;
-    height: 100%;
+    height: 3rem;
     width: 30%;
-    background-color: #48345A;
     bottom: 0px;
 }
 
@@ -80,29 +93,19 @@
     margin-top: 3px;
 }
 
-.tech{
-    float: left;
-    width: 70%;
-    height: 100%;
-    background-color: #48345A;
-}
-.tech ion-input{
-    width: 75%;
-    transform: translate(52px, 47px);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background-color: white;
-}
 // End header
 
 .content{
     background-color: #48345A;
     height: auto;
+    background:url('./../../assets/Image/Template@2x.png');
+    background-size: cover;
+    background-position: center center;    
+    font-family: "Kozuka Mincho Pro";
 }
 
 .article-title{
     transform: translate(0px, 20px);
-    background-color: white;
     border-top-left-radius: 80px;
     border-top-right-radius: 80px;
 }
@@ -110,16 +113,13 @@
 .article{
     display: flex;
     flex-direction: column;
-    padding: 20px 10px;
-    margin-bottom: 2rem;
-    height: 60vh;
-    overflow-y: auto;;
+    height: 90vh;
+    overflow-y: auto;
     flex-direction: column;
-    padding: 20px 10px;
-    margin-bottom: 2rem;
 }
+
 .article h4{
-    color: #9F73AA;
+    color: #FFF;
     margin-top: 30px;
     margin-left: 45px;
 }

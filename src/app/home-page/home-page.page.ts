@@ -32,13 +32,13 @@ export class HomePagePage implements OnInit
   isAnonymous: boolean = false;
 
   // most voted article
-  mostVotedArticleo
+  mostVotedArticle
 
   // list article
   allArticles: any;
 
   // sub category on tech
-
+  subTechCate: Array<String> = ['7ovjPZkmy2C1fjPiiOx8', '8DONo4cPmZzQ71qi4mQR', 'TcPQe21RxDcHPOcWDE4L'];
 
   // all newly article limit by 5
   newPostsOnTech: Array<any> = [];
@@ -53,10 +53,12 @@ export class HomePagePage implements OnInit
   notReadNumber: any = 0;
   isAdmin: boolean = false;
 
+  // detect user subscribe admin
+  isSubscribe: Boolean = false;
+
   ngOnInit()
   {
     this.user = this.__loginService.user;
-    console.log(this.user)
     if (this.user.email == '') this.isAnonymous = true;
     else this.isAnonymous = false;
     if (this.user.role == 'CA' || this.user.role == 'AD') this.isAdmin = true;
@@ -64,7 +66,6 @@ export class HomePagePage implements OnInit
     if (this.user.avatar == '') {
       this.__storage.storage.ref(`default_avatar/default_user.jpeg`).getDownloadURL().then(url =>
       {
-        console.log(url)
         this.userAvatarURL = url;
 
       });
@@ -83,9 +84,13 @@ export class HomePagePage implements OnInit
       let title = data['title'];
       if (this.user.__id !== adminID) {
         alertify.message(`${label} " ${title} "`)
+      } else if (this.user.__id == adminID) {
+        alertify.message(`Bạn vừa tạo bài viết mới: ${title}`)
       }
     })
 
+    // detect subscribe
+    this.detectSubscribe();
     this.getAllNotification();
     this.getAllCategory();
     this.getAllArticles();
@@ -102,7 +107,33 @@ export class HomePagePage implements OnInit
     });
   }
 
+  // random article
+  randomArticle()
+  {
+    let articleArrLength = this.allArticles.length;
+    let randomNumber = Math.floor(Math.random() * articleArrLength);
+    let randomArticle = this.allArticles[randomNumber].id;
+    this.__router.navigate(['article', randomArticle])
+  }
 
+  // detect subscribe 
+  async detectSubscribe()
+  {
+    let result = await this.__userService.detectUserSubscribe(this.user.__id);
+    if (result == true) {
+      this.isSubscribe = true;
+      return;
+    }
+    this.isSubscribe = false;
+  }
+
+  // user subscribe
+  async subscribe()
+  {
+    this.isSubscribe = true;
+    await this.__userService.subscribe(this.user.__id);
+    alertify.success('Đăng ký blog thành công. Những bài viết mới nhất sẽ được cập nhật liên tục cho bạn. Hãy đón xem nhé!')
+  }
 
   handleChangeFile(files: FileList)
   {
@@ -174,21 +205,22 @@ export class HomePagePage implements OnInit
       if (article.cateID == this.listCategory[0].id || article.cateID == this.listCategory[1].id || article.cateID == this.listCategory[2].id) {
         this.newPostsOnTech.push(article);
       }
-      else if (article.cateID == this.listCategory[3].id) this.newPostsOnBook.push(article)
-      else this.newPostsOnStory.push(article)
+      else if (article.cateID == this.listCategory[3].id) this.newPostsOnStory.push(article)
+      else this.newPostsOnBook.push(article)
     });
-
-    this.newPostsOnTech = this.getNewLimitArticle(this.newPostsOnTech, 5)
-    this.newPostsOnBook = this.getNewLimitArticle(this.newPostsOnBook, 5)
-    this.newPostsOnStory = this.getNewLimitArticle(this.newPostsOnStory, 5)
+    this.newPostsOnTech = this.getNewLimitArticle(this.newPostsOnTech, 3)
+    this.newPostsOnBook = this.getNewLimitArticle(this.newPostsOnBook, 3)
+    this.newPostsOnStory = this.getNewLimitArticle(this.newPostsOnStory, 3)
   }
 
   getNewLimitArticle(articleArray, limit)
   {
-    articleArray.splice(limit, articleArray[articleArray.length - 1]);
-    articleArray.sort((nextArticle, prevArticle) =>
+    if (articleArray.length > 3) {
+      articleArray.splice(limit, articleArray.length - 1);
+    }
+    articleArray.sort((prevArticle, nextArticle) =>
     {
-      if (nextArticle.createdDate > prevArticle.createdDate) return -1;
+      if (prevArticle.createdDate > nextArticle.createdDate) return -1;
     });
     for (let article of articleArray) {
       if (article.images.length) {
@@ -221,9 +253,11 @@ export class HomePagePage implements OnInit
   async getAllArticles()
   {
     this.allArticles = await this.adminService.getAllArticle();
-
     this.filterArticleToEachArrayAndLimit();
+    this.mostVotedArticle = await this.__postService.getMostVotedArticle();
+    Object.assign(this.mostVotedArticle, { imageURL: await this.__userService.getDowloadURL('admin/media/images', this.mostVotedArticle.images[0]) })
   }
+
 
   getArticleByCate(cateID, limit)
   {
@@ -238,7 +272,6 @@ export class HomePagePage implements OnInit
     {
       if (article.cateID == cateID && index < limit) this.listArticleShowMenu.push(article);
     });
-
   }
 
   moreArticle(cateID)
@@ -257,13 +290,18 @@ export class HomePagePage implements OnInit
     this.__socket.emit('read-notification-change-color', notiID)
     firebase.firestore().collection('Notification').doc(notiID).update({ isReaded: true, color: '#393e46' }).then(() =>
     {
-      this.__router.navigate(['/article-detail', postID])
+      this.__router.navigate(['/article', postID])
     })
   }
   navigateSpecificArticle(postID)
   {
-    if (postID == 'randomOnTech')
-      this.__router.navigate(['/list-article', postID])
+    if (postID == 'randomOnTech') {
+      let randomNumber = Math.floor(Math.random() * 3);
+      let postIDRandom = this.subTechCate[randomNumber];
+      this.__router.navigate(['/list-article', postIDRandom]);
+      return;
+    }
+    this.__router.navigate(['/list-article', postID])
   }
   openMenu()
   {

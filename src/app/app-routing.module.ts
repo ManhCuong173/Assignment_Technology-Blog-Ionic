@@ -58,9 +58,14 @@ const routes: Routes = [
   {
     path: 'notfound',
     loadChildren: () => import('./notfound/notfound.module').then(m => m.NotfoundPageModule)
-  },  {
+  },
+  {
     path: 'preview',
-    loadChildren: () => import('./preview/preview.module').then( m => m.PreviewPageModule)
+    loadChildren: () => import('./preview/preview.module').then(m => m.PreviewPageModule)
+  },
+  {
+    path: 'list-article-by-tag/:tag',
+    loadChildren: () => import('./list-article-by-tag/list-article-by-tag.module').then(m => m.ListArticleByTagPageModule)
   },
 
 

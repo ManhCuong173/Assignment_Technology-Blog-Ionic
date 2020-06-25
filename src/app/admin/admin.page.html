@@ -10,7 +10,9 @@
         <div class="circle2 circle">
             <ion-icon name="newspaper-outline" (click)="addArticle()"></ion-icon>
         </div>
-        <div class="circle circle3 circle"></div>
+        <div class="circle circle3 circle">
+            <ion-icon name="home-outline" [routerLink]="['/home-page']"></ion-icon>
+        </div>
     </div>
 
     <div class="topbar">
@@ -37,11 +39,11 @@
     <div class="chart">
         <div class="infochart">
             <div style="display: block;height:100%">
-                <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [colors]="chartColors" [legend]="showLegend" [chartType]="chartType" height="300">
+                <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [colors]="chartColors" [legend]="showLegend" [chartType]="chartType" height="300" *ngIf="allArticles">
              </canvas>
             </div>
         </div>
-        <p style="margin-top: 10px;">Total Article per Month</p>
+        <p style="margin-top: 10px;">Tổng bài viết trong từng tháng</p>
     </div>
 
     <ion-icon name="arrow-up-circle-outline" class="iconUp"></ion-icon>
@@ -58,7 +60,7 @@
             <p id="topReaction" *ngIf="isNewestActive == true  ">Newest articles</p>
 
             <div class="listTop" *ngIf="isArticleField == true">
-                <ion-grid *ngIf="mostVotedArticles && isMostVotedActive == true" class="mostInteractive">
+                <ion-grid *ngIf="mostVotedArticles && isMostVotedActive == true">
                     <ion-row *ngFor="let article of mostVotedArticles">
 
                         <ion-col size="2" id="count">
@@ -84,11 +86,17 @@
                         <ion-col size="12">
                             <p><a [routerLink]="['/article',article.id]" style="color: #FFFF">{{article.title}}</a></p>
                         </ion-col>
+                        <ion-col size="12">
+                            <ion-button style="color: #FFFF;
+                            height: 2rem;
+                            float: right;
+                            margin-top: 1rem;" (click)="deleteArticle(article.id)">Delete</ion-button>
+                        </ion-col>
                     </ion-row>
                 </ion-grid>
             </div>
             <div class="listTop" *ngIf="isUserField == true && user.role == 'AD'">
-                <ion-grid class="listUser mostInteractive">
+                <ion-grid class="listUser">
                     <ion-row *ngFor="let user of allUsers">
                         <ion-col size="3">
                             <img src={{user.storageURL}} style="width: 40px;
@@ -128,7 +136,7 @@
             <div class="search">
                 <ion-searchbar style="height: 36px;
                 width: 70%;
-                margin: auto;margin-bottom:10px;"></ion-searchbar>
+                margin: auto;margin-bottom:10px;" (ionChange)="searchArticle($event)" cancelButtonText="Custom Cancel" animated debounce="500"></ion-searchbar>
             </div>
         </div>
         <div class="convert">
