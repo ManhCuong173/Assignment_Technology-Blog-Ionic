@@ -23,6 +23,10 @@ ion-content {
 
 .container {
     background: #f6f2f1;
+background: url('./../../assets/Image/background-image.jpg');
+background-position: center center;
+background-size: contain;
+
 }
 
 .menu {
@@ -205,7 +209,7 @@ ion-content {
         padding: 0.05rem 2rem;
         text-transform: uppercase;
         width: fit-content;
-        background: #48345a24;
+        background: #483939;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
         color: #b49b9b;
