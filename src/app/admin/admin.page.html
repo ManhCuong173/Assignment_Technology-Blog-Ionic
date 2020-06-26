@@ -43,7 +43,7 @@
              </canvas>
             </div>
         </div>
-        <p style="margin-top: 10px;">Tổng bài viết trong từng tháng</p>
+        <p style="margin-top: 10px;">Total articl per Month</p>
     </div>
 
     <ion-icon name="arrow-up-circle-outline" class="iconUp"></ion-icon>
@@ -86,7 +86,7 @@
                         <ion-col size="12">
                             <p><a [routerLink]="['/article',article.id]" style="color: #FFFF">{{article.title}}</a></p>
                         </ion-col>
-                        <ion-col size="12">
+                        <ion-col size="12" *ngIf="isAdmin == true">
                             <ion-button style="color: #FFFF;
                             height: 2rem;
                             float: right;

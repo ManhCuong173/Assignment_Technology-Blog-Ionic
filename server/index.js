@@ -6,7 +6,7 @@ let port = process.env.PORT || 3000;
 
 io.on ('connection', socket => {
   socket.on ('disconnect', function () {
-    soclet.emit ('Disconnect');
+    socket.emit ('Disconnect');
   });
 
   socket.on ('send-notification', function (data) {

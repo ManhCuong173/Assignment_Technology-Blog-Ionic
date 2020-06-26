@@ -1,4 +1,10 @@
 <ion-header>
+    <div class="backbttton" float-right>
+        <ion-buttons>
+            <ion-back-button [text]="buttonText" [icon]="buttonIcon"></ion-back-button>
+        </ion-buttons>
+
+    </div>
     <div class="header">
         <div class="menu">
             <div (click)="openMenu()" class="menuButton">

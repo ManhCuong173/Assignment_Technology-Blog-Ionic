@@ -50,7 +50,6 @@ export class AdminPage implements OnInit
   chartOptions = {
     title: {
       display: true,
-      text: 'Tồng bài viết tùng tháng'
     },
     // down chart by scroll
     pan: {
@@ -72,6 +71,9 @@ export class AdminPage implements OnInit
   chartType = 'bar';
   showLegend = false;
 
+  // detect is CA authorization
+  isAdmin: boolean = false;
+
   // data chart
   chartArrData: any;
   constructor(private __loginService: LoginService, private __utilsService: UtilsService, private __adminService: AdminServiceService, private __userService: UserService, private __router: Router)
@@ -79,7 +81,8 @@ export class AdminPage implements OnInit
 
     // get user infor
     this.user = this.__loginService.getUser();
-
+    if (this.user.role == 'AD') this.isAdmin = true;
+    console.log(this.user)
     // get all article
     this.getAllArticles();
 
@@ -119,12 +122,11 @@ export class AdminPage implements OnInit
         return { [currentKey]: prevValue }
       }
     }, {});
-    console.log(this.chartArrData)
+
     let result = [];
     for (let key in this.chartArrData) {
       result.push([key, this.chartArrData[key]])
     };
-    console.log(result);
     return result;
   }
   // initial data chart
@@ -136,7 +138,7 @@ export class AdminPage implements OnInit
     let colorBarArr = [];
     for (const object of dataArr) {
       this.chartData[0].data.push(object[1])
-      this.chartLabels.push(`Tháng: ${object[0]}`)
+      this.chartLabels.push(`Month: ${object[0]}`)
       colorBarArr.push(this.__utilsService.randomColor());
     }
     this.chartColors[0].backgroundColor = colorBarArr;

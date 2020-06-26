@@ -27,6 +27,7 @@ export class NotificationService
       } else {
         firebase.firestore().collection('Notification').where('to', '==', userId).get().then(snapshot =>
         {
+          snapshot.docs.sort().reverse();
           snapshot.docs.forEach(notfi =>
           {
             let result = Object.assign(notfi.data(), { id: notfi.id })
