@@ -1,2 +1,2 @@
 # Assignment_Technology-Blog-Ionic
-#### Alo
+`inlide code`
