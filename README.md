@@ -1,2 +1,6 @@
 # Assignment_Technology-Blog-Ionic
-`inlide code`
+```php
+
+echo ("highlight code");
+
+```
